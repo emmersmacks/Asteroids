@@ -1,10 +1,11 @@
 using System;
+using Leopotam.Ecs;
 
 namespace Actions.Components
 {
     [Serializable]
-    public struct StartMainAttackComponent
+    public struct StartPlayerMainAttackComponent
     {
-        
+
     }
 }

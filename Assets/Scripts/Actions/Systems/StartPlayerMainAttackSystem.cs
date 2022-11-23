@@ -1,17 +1,18 @@
 using Actions.Components;
 using Data;
 using Game.Components;
+using Game.Extensions;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Actions.Systems
 {
-    public class StartMainAttackSystem : IEcsRunSystem
+    public class StartPlayerMainAttackSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         
-        private readonly EcsFilter<StartMainAttackComponent, PlayerComponent> _actionGroup = null;
-        private readonly EcsFilter<PlayerComponent, SpawnPointsComponent, MainWeaponComponent> _weaponsGroup = null;
+        private readonly EcsFilter<StartPlayerMainAttackComponent> _actionGroup = null;
+        private readonly EcsFilter<PlayerTagComponent, SpawnPointsComponent, MainWeaponComponent> _weaponsGroup = null;
 
         public void Run()
         {
@@ -37,8 +38,8 @@ namespace Actions.Systems
                     {
                         if (!spawnPoints[i].IsSpawned)
                         {
-                            var bulletPrefab = Resources.Load<GameObject>("Bullet");
-                            GameObject.Instantiate(bulletPrefab, spawnPoints[i].Point.position, Quaternion.identity);
+                            var weaponRotation = weaponEntity.Get<TransformComponent>().Value.rotation;
+                            _world.CreatePlayerBullet(spawnPoints[i].Point.position, weaponRotation);
                             spawnPoints[i] = new SpawnPointBase() { Point = spawnPoints[i].Point, IsSpawned = true};
                             return;
                         }

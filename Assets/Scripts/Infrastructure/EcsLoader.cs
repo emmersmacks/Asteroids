@@ -2,6 +2,7 @@ using System;
 using Actions.Components;
 using Actions.Systems;
 using Game.Systems;
+using Game.Systems.Initialize;
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;
@@ -10,25 +11,25 @@ namespace Infrastructure
 {
     public class EcsLoader : MonoBehaviour
     {
+        private EcsSystems _initializeSystems;
         private EcsSystems _updateSystems;
         private EcsSystems _fixedUpdateSystems;
         private EcsWorld _world;
-
-        public void Start()
+        
+        public void Construct()
         {
             _world = new EcsWorld ();
             _updateSystems = new EcsSystems(_world);
             _fixedUpdateSystems = new EcsSystems(_world);
+            _initializeSystems = new EcsSystems(_world);
             
             AddInjections();
             AddSystems();
             AddActions();
-            
-            _updateSystems.ConvertScene();
-            _updateSystems.Init ();
-            
-            _fixedUpdateSystems.ConvertScene();
-            _fixedUpdateSystems.Init ();
+
+            _initializeSystems.Init ();
+            _fixedUpdateSystems.Init();
+            _updateSystems.Init();
         }
 
         private void AddInjections()
@@ -38,15 +39,20 @@ namespace Infrastructure
 
         private void AddSystems()
         {
+            _initializeSystems.Add(new GameInitializeSystem());
+
             _updateSystems.Add(new DesktopInputSystem());
             _updateSystems.Add(new RotateSystem());
-            _updateSystems.Add(new StartMainAttackSystem());
-            _fixedUpdateSystems.Add(new MoveSystem());
+            _updateSystems.Add(new StartPlayerMainAttackSystem());
+            _updateSystems.Add(new BulletMoveSystem());
+            _updateSystems.Add(new CheckPlayerBulletDamageSystem());
+            
+            _fixedUpdateSystems.Add(new ForceMoveSystem());
         }
 
         private void AddActions()
         {
-            _updateSystems.OneFrame<StartMainAttackComponent>();
+            _updateSystems.OneFrame<StartPlayerMainAttackComponent>();
         }
 
         public void Update()

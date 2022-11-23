@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Game.Systems
 {
-    public class MoveSystem : IEcsRunSystem
+    public class BulletMoveSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<DirectionComponent, RigidbodyComponent, SpeedComponent, TransformComponent> _group;
-
+        private readonly EcsFilter<DirectionComponent, SpeedComponent, TransformComponent, BulletComponent> _group;
+        
         public void Run()
         {
             foreach (var index in _group)
@@ -26,9 +26,9 @@ namespace Game.Systems
                 var transform = transformComponent.Value;
 
                 var globalDirection = transform.TransformDirection(Vector2.up);
-                
-                if(direction != Vector2.zero && direction.y > 0)
-                    rigidbody.AddForce(globalDirection * speed);
+
+                if (direction != Vector2.zero && direction.y > 0)
+                    transform.position = Vector2.MoveTowards(transform.position, transform.position + globalDirection, speed * Time.deltaTime);
             }
         }
     }

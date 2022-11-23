@@ -3,7 +3,7 @@ using Voody.UniLeo;
 
 namespace Game.Providers
 {
-    public class PlayerProvider : MonoProvider<PlayerComponent>
+    public class EnemyProvider : MonoProvider<EnemyComponent>
     {
         
     }

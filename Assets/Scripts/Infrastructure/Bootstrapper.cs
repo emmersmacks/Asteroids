@@ -1,13 +1,18 @@
+using Infrastructure.ObjectsPool;
 using UnityEngine;
 
 namespace Infrastructure
 {
     public class Bootstrapper : MonoBehaviour
     {
+        public EcsLoader EcsLoader;
+        public PoolSetup PoolSetup;
+        
         private void Awake()
         {
             DontDestroyOnLoad(this);
-            new EcsLoader();
+            PoolSetup.Construct();
+            EcsLoader.Construct();
         }
     }
 }

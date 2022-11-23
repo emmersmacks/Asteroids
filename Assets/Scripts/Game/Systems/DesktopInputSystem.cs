@@ -9,7 +9,7 @@ namespace Game.Systems
     public class DesktopInputSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<DirectionComponent, PlayerComponent> _group = null;
+        private readonly EcsFilter<DirectionComponent, PlayerTagComponent, UnitComponent> _group = null;
 
         public void Run()
         {
@@ -23,8 +23,7 @@ namespace Game.Systems
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log("FFF");
-                    entity.Get<StartMainAttackComponent>();
+                    _world.NewEntity().Replace(new StartPlayerMainAttackComponent());
                 }
 
                 var component = new DirectionComponent() { Value = direction };

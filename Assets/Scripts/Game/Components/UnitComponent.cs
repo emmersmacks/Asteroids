@@ -3,7 +3,7 @@ using System;
 namespace Game.Components
 {
     [Serializable]
-    public struct PlayerComponent
+    public struct UnitComponent
     {
         
     }

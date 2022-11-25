@@ -1,5 +1,6 @@
 using Actions.Components;
 using Data;
+using Data.Parameters;
 using Game.Components;
 using Game.Extensions;
 using Leopotam.Ecs;
@@ -9,6 +10,8 @@ namespace Actions.Systems
 {
     public class StartPlayerMainAttackSystem : IEcsRunSystem
     {
+        private readonly IPlayerBulletParameters _playerBulletParameters = null;
+        
         private readonly EcsWorld _world = null;
         
         private readonly EcsFilter<StartPlayerMainAttackComponent> _actionGroup = null;
@@ -30,7 +33,7 @@ namespace Actions.Systems
                     {
                         for (int pointIndex = 0; pointIndex < spawnPoints.Length; pointIndex++)
                         {
-                            spawnPoints[pointIndex] = new SpawnPointBase() { Point = spawnPoints[pointIndex].Point, IsSpawned = false};
+                            spawnPoints[pointIndex] = new BulletSpawnPointBase() { Point = spawnPoints[pointIndex].Point, IsSpawned = false};
                         }
                     }
                     
@@ -39,8 +42,8 @@ namespace Actions.Systems
                         if (!spawnPoints[i].IsSpawned)
                         {
                             var weaponRotation = weaponEntity.Get<TransformComponent>().Value.rotation;
-                            _world.CreatePlayerBullet(spawnPoints[i].Point.position, weaponRotation);
-                            spawnPoints[i] = new SpawnPointBase() { Point = spawnPoints[i].Point, IsSpawned = true};
+                            _world.CreatePlayerBullet(spawnPoints[i].Point.position, weaponRotation, _playerBulletParameters.DamageLayerMask);
+                            spawnPoints[i] = new BulletSpawnPointBase() { Point = spawnPoints[i].Point, IsSpawned = true};
                             return;
                         }
                     }

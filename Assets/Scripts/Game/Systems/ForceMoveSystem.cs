@@ -1,5 +1,4 @@
 using Game.Components;
-using Game.Providers;
 using Leopotam.Ecs;
 using UnityEngine;
 

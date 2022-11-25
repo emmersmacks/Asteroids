@@ -14,5 +14,13 @@ namespace Game.Extensions
             entity.Replace(new UidComponent() { Value = objectUid });
             return gameObject;
         }
+        
+        public static void AddParent(this EcsEntity entity, EcsEntity parentEntity)
+        {
+            var transform = entity.Get<TransformComponent>().Value;
+            var parentTransform = parentEntity.Get<TransformComponent>().Value;
+            
+            transform.SetParent(parentTransform);
+        }
     }
 }

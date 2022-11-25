@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7f3fb371b34bd98deb03b803d132f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerBulletParameters: {fileID: 11400000, guid: 6643323a243f16146a7709d2b1cc9870, type: 2}
 --- !u!114 &2352119817441552131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +86,18 @@ MonoBehaviour:
   - name: MainGun
     prefab: {fileID: -1662135727167262507, guid: 537e25d3b3a763846814f84d5422dabb, type: 3}
     count: 1
+    ferula: {fileID: 1169838080651080587}
+  - name: Level
+    prefab: {fileID: 7347006046659958186, guid: c75659709d3d26b458fbb456acb3828e, type: 3}
+    count: 1
+    ferula: {fileID: 1169838080651080587}
+  - name: BigAsteroid
+    prefab: {fileID: 8287552351059567613, guid: 61653a2907e57eb4fa65f3b732730f11, type: 3}
+    count: 10
+    ferula: {fileID: 1169838080651080587}
+  - name: SmallAsteroid
+    prefab: {fileID: 6370030334638132110, guid: 27cf35fa9d05205499984444f230f7ed, type: 3}
+    count: 20
     ferula: {fileID: 1169838080651080587}
 --- !u!1 &5955907497439027165
 GameObject:

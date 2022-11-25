@@ -10,7 +10,7 @@ namespace Game.Systems
     {
         private readonly EcsWorld _world = null;
         
-        private readonly EcsFilter<PlayerTagComponent, TransformComponent, BulletComponent, DamageLayerComponent> _bulletsGroup;
+        private readonly EcsFilter<PlayerTagComponent, TransformComponent, BulletComponent, DamageLayerComponent>.Exclude<DestroyComponent> _bulletsGroup;
 
         public void Run()
         {
@@ -20,24 +20,28 @@ namespace Game.Systems
                 
                 var bulletTransform = bulletEntity.Get<TransformComponent>().Value;
                 var oldBulletPosition = bulletEntity.Get<OldPositionComponent>().Value;
-
                 var bulletPosition = bulletTransform.position;
-
+                
+                bulletEntity.Replace(new OldPositionComponent() { Value = bulletPosition });
+                
                 var distance = Vector3.Distance(bulletPosition, oldBulletPosition);
-                var direction = oldBulletPosition.normalized;
+                var direction = oldBulletPosition - bulletPosition;
+                direction = direction.normalized;
                 RaycastHit2D hit = Physics2D.Raycast(bulletPosition, direction, distance);
-                    
+                
                 if (hit.collider == null)
-                    return;
+                    continue;
 
                 var damageLayer = bulletEntity.Get<DamageLayerComponent>().Value;
-                var layerName = LayerMask.LayerToName(damageLayer);
-                
-                if (hit.collider.CompareTag(layerName))
+
+                if (damageLayer == (damageLayer | (1 << hit.collider.gameObject.layer)))
                 {
                     var uid = hit.collider.gameObject.GetInstanceID();
                     var entity = _world.GetEntityWithUid(uid);
+                    entity.Get<DestroyComponent>();
+                    bulletEntity.Get<DestroyComponent>();
                 }
+
             }
         }
     }

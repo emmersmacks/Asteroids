@@ -10,8 +10,9 @@ namespace Game.Systems.Initialize
         
         public void Init()
         {
-            _world.CreatePlayer(Vector3.zero);
-            _world.CreateMainWeapon(Vector3.zero);
+            var player = _world.CreatePlayer(Vector3.zero);
+            _world.CreateMainWeapon(Vector3.zero, player);
+            _world.CreateLevel();
         }
     }
 }

@@ -1,16 +1,19 @@
 using System;
 using Actions.Components;
 using Actions.Systems;
+using Data.Parameters;
+using Data.Parameters.Impl;
 using Game.Systems;
 using Game.Systems.Initialize;
 using Leopotam.Ecs;
 using UnityEngine;
-using Voody.UniLeo;
 
 namespace Infrastructure
 {
     public class EcsLoader : MonoBehaviour
     {
+        [SerializeField] private PlayerBulletParameters _playerBulletParameters;
+        
         private EcsSystems _initializeSystems;
         private EcsSystems _updateSystems;
         private EcsSystems _fixedUpdateSystems;
@@ -34,7 +37,7 @@ namespace Infrastructure
 
         private void AddInjections()
         {
-            
+            _updateSystems.Inject(_playerBulletParameters);
         }
 
         private void AddSystems()
@@ -46,6 +49,10 @@ namespace Infrastructure
             _updateSystems.Add(new StartPlayerMainAttackSystem());
             _updateSystems.Add(new BulletMoveSystem());
             _updateSystems.Add(new CheckPlayerBulletDamageSystem());
+            _updateSystems.Add(new SplitAsteroidSystem());
+            _updateSystems.Add(new DestroyEntitySystem());
+            _updateSystems.Add(new DelayCountdownSystem());
+            _updateSystems.Add(new SpawnAsteroidsSystem());
             
             _fixedUpdateSystems.Add(new ForceMoveSystem());
         }

@@ -5,6 +5,6 @@ namespace Game.Views
 {
     public class WeaponView : MonoBehaviour
     {
-        public SpawnPointBase[] BulletSpawnPoints;
+        public BulletSpawnPointBase[] BulletSpawnPoints;
     }
 }

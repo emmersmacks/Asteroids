@@ -7,6 +7,6 @@ namespace Game.Components
     [Serializable]
     public struct SpawnPointsComponent
     {
-        public SpawnPointBase[] Value;
+        public BulletSpawnPointBase[] Value;
     }
 }

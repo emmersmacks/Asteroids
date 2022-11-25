@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,6 +69,42 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -78,7 +114,196 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Starry background  - Layer 01 - Void_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e42845b156ca98845bc90aaf55942e9f
+      internalID: 322485775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background  - Layer 01 - Void_1
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cdb9ffefc6ccc345853b0e0c5c403a7
+      internalID: 1338077434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background  - Layer 01 - Void_2
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fb8bfa2eed3cab409132b8c10d1f2f0
+      internalID: 1025684306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background  - Layer 01 - Void_3
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff22dc4144dd43d419214600a68a6c3c
+      internalID: -1704800904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background  - Layer 01 - Void_4
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0db73a2022cb99947aba1114283b4019
+      internalID: -655529525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background  - Layer 01 - Void_5
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 731c594477ad6d848b3b1981e7a31096
+      internalID: -916709542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background  - Layer 01 - Void_6
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2568a10b8704ce745b6b457dd3a7a190
+      internalID: 191825582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background  - Layer 01 - Void_7
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab66e721b717bb84b80b29fab88ec989
+      internalID: -2128372755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background  - Layer 01 - Void_8
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ce492dff2af3fa4a8a53e382e7b2961
+      internalID: 707189619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -89,7 +314,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Starry background  - Layer 01 - Void_0: 322485775
+      Starry background  - Layer 01 - Void_5: -916709542
+      Starry background  - Layer 01 - Void_1: 1338077434
+      Starry background  - Layer 01 - Void_3: -1704800904
+      Starry background  - Layer 01 - Void_8: 707189619
+      Starry background  - Layer 01 - Void_4: -655529525
+      Starry background  - Layer 01 - Void_2: 1025684306
+      Starry background  - Layer 01 - Void_7: -2128372755
+      Starry background  - Layer 01 - Void_6: 191825582
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

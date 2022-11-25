@@ -50,10 +50,11 @@ namespace Infrastructure
             _updateSystems.Add(new BulletMoveSystem());
             _updateSystems.Add(new CheckPlayerBulletDamageSystem());
             _updateSystems.Add(new SplitAsteroidSystem());
-            _updateSystems.Add(new DestroyEntitySystem());
             _updateSystems.Add(new DelayCountdownSystem());
             _updateSystems.Add(new SpawnAsteroidsSystem());
-            
+            _updateSystems.Add(new ClearObjectsOnDistanceSystem());
+            _updateSystems.Add(new DestroyEntitySystem());
+
             _fixedUpdateSystems.Add(new ForceMoveSystem());
         }
 

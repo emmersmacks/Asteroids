@@ -13,7 +13,7 @@ namespace Actions.Systems
         private readonly IPlayerBulletParameters _playerBulletParameters = null;
         
         private readonly EcsWorld _world = null;
-        
+
         private readonly EcsFilter<StartPlayerMainAttackComponent> _actionGroup = null;
         private readonly EcsFilter<PlayerTagComponent, SpawnPointsComponent, MainWeaponComponent> _weaponsGroup = null;
 
@@ -28,7 +28,6 @@ namespace Actions.Systems
                     var weaponEntity = _weaponsGroup.GetEntity(weaponIndex);
                     var spawnPointsComponent = weaponEntity.Get<SpawnPointsComponent>();
                     var spawnPoints = spawnPointsComponent.Value;
-
                     if (spawnPoints[spawnPoints.Length - 1].IsSpawned)
                     {
                         for (int pointIndex = 0; pointIndex < spawnPoints.Length; pointIndex++)
@@ -36,7 +35,7 @@ namespace Actions.Systems
                             spawnPoints[pointIndex] = new BulletSpawnPointBase() { Point = spawnPoints[pointIndex].Point, IsSpawned = false};
                         }
                     }
-                    
+
                     for (int i = 0; i < spawnPoints.Length; i++)
                     {
                         if (!spawnPoints[i].IsSpawned)

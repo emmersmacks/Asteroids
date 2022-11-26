@@ -28,6 +28,9 @@ namespace Game.Systems
                 var scoreComponent = new ScoreComponent() { Value = newScore };
                 level.Replace(scoreComponent);
                 _world.ScoreChange?.Invoke(newScore);
+
+                var enemyTransform = enemy.Get<TransformComponent>().Value;
+                PoolManager.GetObject("BoomVfx", enemyTransform.position);
             }
         }
     }

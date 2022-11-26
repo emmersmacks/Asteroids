@@ -1,26 +1,34 @@
+using System.Collections.Generic;
+using Data.Installers;
+using Data.Installers.Impl;
 using UnityEngine;
 
 namespace Infrastructure.ObjectsPool
 {
     public class PoolSetup : MonoBehaviour
     {
-        [SerializeField] private PoolManager.PoolPart[] pools;
+        [SerializeField] private PrefabsBase[] prefabsBases;
 
+        private PoolManager.PoolPart[] _pools;
+        
         public void Construct()
         {
             Initialize();
         }
-        
-        void OnValidate() 
-        {
-            for (int i = 0; i < pools.Length; i++) {
-                pools[i].name = pools[i].prefab.name;
-            }
-        }
 
-        void Initialize () 
+        void Initialize ()
         {
-            PoolManager.Initialize(pools);
+            var poolsList = new List<PoolManager.PoolPart>();
+            foreach (var prefBase in prefabsBases)
+            {
+                foreach (var basePools in prefBase.Pools)
+                {
+                    poolsList.Add(basePools);
+                }
+            }
+
+            _pools = poolsList.ToArray();
+            PoolManager.Initialize(_pools);
         }
     }
 }

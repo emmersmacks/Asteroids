@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f448311aaf5244449281d64d06ae4780, type: 3}
+  m_Name: VfxPrefabsBase
+  m_EditorClassIdentifier: 
+  Pools:
+  - name: BoomVfx
+    prefab: {fileID: 8639870811883502157, guid: 8d88e34476373664fa8f33e84e078625, type: 3}
+    count: 5
+    ferula: {fileID: 889159038130602929, guid: 930b47974dfe13040b2bd64f3fd7f374, type: 3}

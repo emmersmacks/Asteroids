@@ -3,6 +3,7 @@ using Data;
 using Data.Bases;
 using Data.Parameters;
 using Data.Parameters.PlayerBullet;
+using Data.Parameters.PlayerBullet.Impl;
 using Game.Components;
 using Game.Components.SpawnPoints;
 using Game.Components.Tags;
@@ -15,7 +16,7 @@ namespace Actions.Systems
 {
     public class StartPlayerMainAttackSystem : IEcsRunSystem
     {
-        private readonly IPlayerBulletParameters _playerBulletParameters = null;
+        private readonly PlayerBulletParameters _playerBulletParameters = null;
         
         private readonly CustomEcsWorld _world = null;
 

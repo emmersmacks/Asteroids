@@ -2,6 +2,7 @@ using Actions.Components;
 using Data;
 using Data.Parameters;
 using Data.Parameters.PlayerBullet;
+using Data.Parameters.PlayerBullet.Impl;
 using Esc.Game.Components.Tags;
 using Game.Components;
 using Game.Components.SpawnPoints;
@@ -15,7 +16,7 @@ namespace Actions.Systems
 {
     public class StartPlayerLaserAttackSystem : IEcsRunSystem
     {
-        private readonly IPlayerBulletParameters _playerBulletParameters = null;
+        private readonly PlayerBulletParameters _playerBulletParameters = null;
         
         private readonly CustomEcsWorld _world = null;
 

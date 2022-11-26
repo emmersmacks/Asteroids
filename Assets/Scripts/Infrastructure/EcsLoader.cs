@@ -2,9 +2,12 @@ using System;
 using Actions.Components;
 using Actions.Systems;
 using Data.Parameters;
-using Data.Parameters.Impl;
+using Data.Parameters.PlayerBullet.Impl;
 using Game.Systems;
+using Game.Systems.Asteroids;
 using Game.Systems.Initialize;
+using Game.Systems.Player;
+using Game.Systems.UFO;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -42,20 +45,21 @@ namespace Infrastructure
 
         private void AddSystems()
         {
-            _initializeSystems.Add(new GameInitializeSystem());
+            _initializeSystems.Add(new PlayerInitializeSystem());
+            _initializeSystems.Add(new LevelInitializeSystem());
 
             _updateSystems.Add(new DesktopInputSystem());
-            _updateSystems.Add(new StoppingAtBorderFieldSystem());
-            _updateSystems.Add(new RotateSystem());
+            _updateSystems.Add(new StopAtBorderFieldSystem());
+            _updateSystems.Add(new PlayerRotateSystem());
             _updateSystems.Add(new StartPlayerMainAttackSystem());
             _updateSystems.Add(new StartPlayerLaserAttackSystem());
             _updateSystems.Add(new TransformMoveSystem());
-            _updateSystems.Add(new CheckBulletDamageSystem());
+            _updateSystems.Add(new CheckBulletHitSystem());
             _updateSystems.Add(new SplitAsteroidSystem());
-            _updateSystems.Add(new DelayCountdownSystem());
-            _updateSystems.Add(new DestroyDelayCountdownSystem());
+            _updateSystems.Add(new CountdownSystem());
+            _updateSystems.Add(new CountdownToDeletionSystem());
             _updateSystems.Add(new SpawnAsteroidsSystem());
-            _updateSystems.Add(new ClearObjectsOnDistanceSystem());
+            _updateSystems.Add(new DeletingFlewAwayObjects());
             _updateSystems.Add(new FollowPlayerSystem());
             _updateSystems.Add(new SpawnUFOSystem());
             _updateSystems.Add(new DestroyEntitySystem());

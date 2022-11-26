@@ -1,15 +1,17 @@
 using Data;
 using Game.Components;
+using Game.Components.Asteroids;
+using Game.Components.Tags;
 using Game.Extensions;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Game.Systems
+namespace Game.Systems.Asteroids
 {
     public class SplitAsteroidSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<AsteroidComponent, DestroyComponent, AsteroidSizeComponent> _group;
+        private readonly EcsFilter<AsteroidTagComponent, DestroyComponent, AsteroidSizeComponent> _group;
         
         public void Run()
         {

@@ -1,6 +1,12 @@
+using System.Collections.Generic;
 using Data;
+using Data.Bases;
 using Game.Components;
+using Game.Components.Asteroids;
+using Game.Components.SpawnPoints;
+using Game.Components.Tags;
 using Game.Views;
+using Game.Views.SpawnPoints;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -34,7 +40,7 @@ namespace Game.Extensions
             entity.Replace(new DirectionComponent() { Value = Vector2.up });
             entity.Replace(new DamageLayerComponent() { Value = damageLayer });
             entity.Replace(new OldPositionComponent() { Value = position });
-            entity.Get<BulletComponent>();
+            entity.Get<BulletTagComponent>();
             entity.Get<TransformMoveComponent>();
             return entity;
         }
@@ -48,7 +54,7 @@ namespace Game.Extensions
             var lineRenderer = gameObject.GetComponent<LineRenderer>();
             lineRenderer.SetPosition(0, startPosition);
             lineRenderer.SetPosition(1, direction);
-            entity.Get<BulletComponent>();
+            entity.Get<BulletTagComponent>();
             return entity;
         }
         
@@ -57,7 +63,7 @@ namespace Game.Extensions
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab("MainGun", position);
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
-            entity.Replace(new SpawnPointsComponent() { Value = gameObject.GetComponent<WeaponView>().BulletSpawnPoints });
+            entity.Replace(new SpawnPointsWithBoolComponent() { Value = gameObject.GetComponent<WeaponView>().BulletSpawnPoints });
             entity.AddParent(player);
             entity.Get<MainWeaponComponent>();
             entity.Get<PlayerTagComponent>();
@@ -69,7 +75,7 @@ namespace Game.Extensions
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab("LaserGun", position);
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
-            entity.Replace(new SpawnPointsComponent() { Value = gameObject.GetComponent<WeaponView>().BulletSpawnPoints });
+            entity.Replace(new SpawnPointsWithBoolComponent() { Value = gameObject.GetComponent<WeaponView>().BulletSpawnPoints });
             entity.AddParent(player);
             entity.Get<AdditionalWeaponComponent>();
             entity.Get<PlayerTagComponent>();
@@ -79,14 +85,44 @@ namespace Game.Extensions
         public static EcsEntity CreateLevel(this EcsWorld world)
         {
             var entity = world.NewEntity();
-            var gameObject = entity.AddPrefab("Level");
-            
-            var asteroidsSpawnerEntity = world.NewEntity();
-            asteroidsSpawnerEntity.Replace(new AsteroidSpawnPointsComponent() { Value = gameObject.GetComponent<LevelView>().AsteroidSpawnPoints });
-            var UFOSpawnerEntity = world.NewEntity();
-            UFOSpawnerEntity.Replace(new UFOSpawnPointsComponent() { Value = gameObject.GetComponent<LevelView>().UFOSpawnPoints });
-            
+            entity.AddPrefab("Level");
             entity.Get<LevelTagComponent>();
+            return entity;
+        }
+        
+        public static EcsEntity InitializeAsteroidsSpawner(this EcsWorld world, AsteroidSpawnPointView[] spawnPoints)
+        {
+            var entity = world.NewEntity();
+            var pointsBase = new List<DirectedSpawnPointBase>();
+            
+            foreach (var point in spawnPoints)
+            {
+                var newPoint = new DirectedSpawnPointBase()
+                {
+                    Direction = point.TargetMoveDirection,
+                    Point = point.transform
+                };
+                pointsBase.Add(newPoint);
+            }
+            
+            entity.Replace(new DirectedSpawnPointsComponent() { Value = pointsBase.ToArray() });
+            entity.Get<AsteroidTagComponent>();
+            return entity;
+        }
+        
+        public static EcsEntity InitializeUFOSpawner(this EcsWorld world, UFOSpawnPointView[] spawnPoints)
+        {
+            var entity = world.NewEntity();
+            var pointsBase = new List<Transform>();
+            
+            foreach (var point in spawnPoints)
+            {
+                var newPoint = point.transform;
+                pointsBase.Add(newPoint);
+            }
+            
+            entity.Replace(new SpawnPointsComponent() { Value = pointsBase.ToArray() });
+            entity.Get<UFOTagComponent>();
             return entity;
         }
 
@@ -100,7 +136,7 @@ namespace Game.Extensions
             entity.Replace(new DirectionComponent() { Value = Vector2.up });
             entity.Replace(new AsteroidSizeComponent() { Value = EAsteroidSizeType.Big });
             entity.Get<TransformMoveComponent>();
-            entity.Get<AsteroidComponent>();
+            entity.Get<AsteroidTagComponent>();
             return entity;
         }
         

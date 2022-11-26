@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Systems.Initialize
 {
-    public class GameInitializeSystem : IEcsInitSystem
+    public class PlayerInitializeSystem : IEcsInitSystem
     {
         private readonly EcsWorld _world = null;
         
@@ -13,7 +13,6 @@ namespace Game.Systems.Initialize
             var player = _world.CreatePlayer(Vector3.zero);
             _world.CreateMainWeapon(Vector3.zero, player);
             _world.CreateLaserWeapon(Vector3.zero, player);
-            _world.CreateLevel();
         }
     }
 }

@@ -3,7 +3,7 @@ using Leopotam.Ecs;
 
 namespace Game.Systems
 {
-    public class ClearObjectsOnDistanceSystem : IEcsRunSystem
+    public class DeletingFlewAwayObjects : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<TransformComponent>.Exclude<DestroyComponent> _group = null;

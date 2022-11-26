@@ -1,7 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Data.Parameters
+namespace Data.Parameters.PlayerBullet
 {
     public interface IPlayerBulletParameters
     {

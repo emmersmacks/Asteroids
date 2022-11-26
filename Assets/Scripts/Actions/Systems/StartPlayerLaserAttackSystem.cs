@@ -1,7 +1,10 @@
 using Actions.Components;
 using Data;
 using Data.Parameters;
+using Data.Parameters.PlayerBullet;
 using Game.Components;
+using Game.Components.SpawnPoints;
+using Game.Components.Tags;
 using Game.Extensions;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -15,7 +18,7 @@ namespace Actions.Systems
         private readonly EcsWorld _world = null;
 
         private readonly EcsFilter<StartPlayerLaserAttackComponent> _actionGroup = null;
-        private readonly EcsFilter<PlayerTagComponent, SpawnPointsComponent, AdditionalWeaponComponent> _weaponsGroup = null;
+        private readonly EcsFilter<PlayerTagComponent, SpawnPointsWithBoolComponent, AdditionalWeaponComponent> _weaponsGroup = null;
 
         public void Run()
         {
@@ -26,7 +29,7 @@ namespace Actions.Systems
                 foreach (var weaponIndex in _weaponsGroup)
                 {
                     var weaponEntity = _weaponsGroup.GetEntity(weaponIndex);
-                    var spawnPointsComponent = weaponEntity.Get<SpawnPointsComponent>();
+                    var spawnPointsComponent = weaponEntity.Get<SpawnPointsWithBoolComponent>();
                     var spawnPoints = spawnPointsComponent.Value;
 
                     foreach (var point in spawnPoints)

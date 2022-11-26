@@ -1,16 +1,17 @@
 using System;
 using Game.Components;
+using Game.Components.Tags;
 using Game.Extensions;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Game.Systems
 {
-    public class CheckBulletDamageSystem : IEcsRunSystem
+    public class CheckBulletHitSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         
-        private readonly EcsFilter<TransformComponent, BulletComponent, DamageLayerComponent>.Exclude<DestroyComponent> _bulletsGroup;
+        private readonly EcsFilter<TransformComponent, BulletTagComponent, DamageLayerComponent>.Exclude<DestroyComponent> _bulletsGroup;
 
         public void Run()
         {

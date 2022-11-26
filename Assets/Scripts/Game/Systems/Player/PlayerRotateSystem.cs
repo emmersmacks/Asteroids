@@ -2,9 +2,9 @@ using Game.Components;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Game.Systems
+namespace Game.Systems.Player
 {
-    public class RotateSystem : IEcsRunSystem
+    public class PlayerRotateSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<DirectionComponent, TransformComponent, RotateSpeedComponent> _group;

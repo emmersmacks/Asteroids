@@ -1,33 +1,37 @@
 using Game.Components;
+using Game.Components.SpawnPoints;
+using Game.Components.Tags;
 using Game.Extensions;
-using Game.Views.SpawnPoints;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Game.Systems
+namespace Game.Systems.Asteroids
 {
     public class SpawnAsteroidsSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<AsteroidSpawnPointsComponent>.Exclude<DelayComponent> _group;
+        private readonly EcsFilter<DirectedSpawnPointsComponent, AsteroidTagComponent>.Exclude<DelayComponent> _group;
         
         public void Run()
         {
             foreach (var index in _group)
             {
                 var entity = _group.GetEntity(index);
-                var asteroidSpawnPointsComponent = entity.Get<AsteroidSpawnPointsComponent>();
-                var points = asteroidSpawnPointsComponent.Value;
+                
+                var spawnPoints = entity.Get<DirectedSpawnPointsComponent>().Value;
 
                 var random = new System.Random();
-                var randomIndex = random.Next(0, points.Length);
-                var randomPoint = points[randomIndex];
+                var randomIndex = random.Next(0, spawnPoints.Length);
+                var point = spawnPoints[randomIndex];
 
-                var transform = randomPoint.transform;
-                var lookAngle = GetLookAngle(transform, randomPoint.TargetMoveDirection);
-
-                _world.CreateBigAsteroid(randomPoint.transform.position, lookAngle);
-                entity.Replace(new DelayComponent() { Value = 5 });
+                var moveDirection = point.Direction;
+                var transform = point.Point.transform;
+            
+                var lookAngle = GetLookAngle(transform, moveDirection);
+                _world.CreateBigAsteroid(transform.position, lookAngle);
+                
+                var delayComponent = new DelayComponent() { Value = 3 };
+                entity.Replace(delayComponent);
             }
         }
 

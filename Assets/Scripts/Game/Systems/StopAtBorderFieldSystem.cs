@@ -1,10 +1,11 @@
 using Game.Components;
+using Game.Components.Tags;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Game.Systems
 {
-    public class StoppingAtBorderFieldSystem : IEcsRunSystem
+    public class StopAtBorderFieldSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<RigidbodyComponent, TransformComponent, PlayerTagComponent> _group;

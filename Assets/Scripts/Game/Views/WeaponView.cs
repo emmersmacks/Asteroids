@@ -1,10 +1,11 @@
 using Data;
+using Data.Bases;
 using UnityEngine;
 
 namespace Game.Views
 {
     public class WeaponView : MonoBehaviour
     {
-        public BulletSpawnPointBase[] BulletSpawnPoints;
+        public BoolSpawnPointBase[] BulletSpawnPoints;
     }
 }

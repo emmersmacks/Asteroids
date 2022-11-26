@@ -1,28 +1,32 @@
 using Game.Components;
+using Game.Components.SpawnPoints;
+using Game.Components.Tags;
 using Game.Extensions;
 using Leopotam.Ecs;
-using UnityEngine;
 
-namespace Game.Systems
+namespace Game.Systems.UFO
 {
     public class SpawnUFOSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<UFOSpawnPointsComponent>.Exclude<DelayComponent> _group;
+        
+        private readonly EcsFilter<SpawnPointsComponent, UFOTagComponent>.Exclude<DelayComponent> _group;
         
         public void Run()
         {
             foreach (var index in _group)
             {
                 var entity = _group.GetEntity(index);
-                var points = entity.Get<UFOSpawnPointsComponent>().Value;
+                
+                var spawnPoints = entity.Get<SpawnPointsComponent>().Value;
 
                 var random = new System.Random();
-                var randomIndex = random.Next(0, points.Length);
-                var randomPoint = points[randomIndex];
-
-                var pointPosition = randomPoint.transform.position;
-                _world.CreateUFO(pointPosition);
+                var randomIndex = random.Next(0, spawnPoints.Length);
+                var point = spawnPoints[randomIndex];
+                
+                var transform = point.transform;
+            
+                _world.CreateUFO(transform.position);
 
                 var delayComponent = new DelayComponent() { Value = 10 };
                 entity.Replace(delayComponent);

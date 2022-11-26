@@ -20,15 +20,21 @@ namespace Infrastructure
         private EcsSystems _initializeSystems;
         private EcsSystems _updateSystems;
         private EcsSystems _fixedUpdateSystems;
-        private EcsWorld _world;
         
-        public void Construct()
+        public CustomEcsWorld World;
+
+        public void CreateWorld()
         {
-            _world = new EcsWorld ();
-            _updateSystems = new EcsSystems(_world);
-            _fixedUpdateSystems = new EcsSystems(_world);
-            _initializeSystems = new EcsSystems(_world);
+            World = new CustomEcsWorld();
+        }
+        
+        public void StartSystems()
+        {
             
+            _updateSystems = new EcsSystems(World);
+            _fixedUpdateSystems = new EcsSystems(World);
+            _initializeSystems = new EcsSystems(World);
+
             AddInjections();
             AddSystems();
             AddActions();
@@ -62,6 +68,7 @@ namespace Infrastructure
             _updateSystems.Add(new DeletingFlewAwayObjects());
             _updateSystems.Add(new FollowPlayerSystem());
             _updateSystems.Add(new SpawnUFOSystem());
+            _updateSystems.Add(new ChargeRecoverySystem());
             _updateSystems.Add(new DestroyEntitySystem());
 
             _fixedUpdateSystems.Add(new ForceMoveSystem());
@@ -75,19 +82,24 @@ namespace Infrastructure
 
         public void Update()
         {
-            _updateSystems.Run();
+            if(World != null)
+                _updateSystems.Run();
         }
 
         public void FixedUpdate()
         {
-            _fixedUpdateSystems.Run();
+            if(World != null)
+                _fixedUpdateSystems.Run();
         }
 
         public void OnDestroy()
         {
-            _updateSystems.Destroy();
-            _fixedUpdateSystems.Destroy();
-            _world.Destroy();
+            if (World != null)
+            {
+                _updateSystems.Destroy();
+                _fixedUpdateSystems.Destroy();
+                World.Destroy();
+            }
         }
     }
 }

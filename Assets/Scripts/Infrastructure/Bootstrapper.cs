@@ -1,18 +1,19 @@
 using Infrastructure.ObjectsPool;
+using Infrastructure.StateMachine;
+using Infrastructure.StateMachine.States.Impl;
 using UnityEngine;
 
 namespace Infrastructure
 {
     public class Bootstrapper : MonoBehaviour
     {
-        public EcsLoader EcsLoader;
         public PoolSetup PoolSetup;
         
         private void Awake()
         {
             DontDestroyOnLoad(this);
-            PoolSetup.Construct();
-            EcsLoader.Construct();
+            var stateMachine = new GameStateMachine(PoolSetup);
+            stateMachine.Enter<BootstrapState>();
         }
     }
 }

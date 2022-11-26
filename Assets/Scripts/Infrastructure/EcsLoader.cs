@@ -45,6 +45,7 @@ namespace Infrastructure
             _initializeSystems.Add(new GameInitializeSystem());
 
             _updateSystems.Add(new DesktopInputSystem());
+            _updateSystems.Add(new StoppingAtBorderFieldSystem());
             _updateSystems.Add(new RotateSystem());
             _updateSystems.Add(new StartPlayerMainAttackSystem());
             _updateSystems.Add(new StartPlayerLaserAttackSystem());

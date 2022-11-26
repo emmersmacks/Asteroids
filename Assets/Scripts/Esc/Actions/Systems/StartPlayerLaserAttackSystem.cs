@@ -2,6 +2,7 @@ using Actions.Components;
 using Data;
 using Data.Parameters;
 using Data.Parameters.PlayerBullet;
+using Esc.Game.Components.Tags;
 using Game.Components;
 using Game.Components.SpawnPoints;
 using Game.Components.Tags;
@@ -51,6 +52,7 @@ namespace Actions.Systems
                             var uid = hit.collider.gameObject.GetInstanceID();
                             var hitEntity = _world.GetEntityWithUid(uid);
                             hitEntity.Get<DestroyComponent>();
+                            hitEntity.Get<KilledTagComponent>();
                         }
                     }
 

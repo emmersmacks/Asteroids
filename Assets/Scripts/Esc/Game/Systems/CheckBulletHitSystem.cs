@@ -1,4 +1,5 @@
 using System;
+using Esc.Game.Components.Tags;
 using Game.Components;
 using Game.Components.Tags;
 using Game.Extensions;
@@ -41,6 +42,7 @@ namespace Game.Systems
                     var uid = hit.collider.gameObject.GetInstanceID();
                     var entity = _world.GetEntityWithUid(uid);
                     entity.Get<DestroyComponent>();
+                    entity.Get<KilledTagComponent>();
                     bulletEntity.Get<DestroyComponent>();
                 }
             }

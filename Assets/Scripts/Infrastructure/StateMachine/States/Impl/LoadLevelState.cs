@@ -23,19 +23,19 @@ namespace Infrastructure.StateMachine.States.Impl
         {
             var ecsLoaderObject = PoolManager.GetObject("EcsInstaller");
             var ecsLoader = ecsLoaderObject.GetComponent<EcsLoader>();
-            ecsLoader.CreateWorld();
+            ecsLoader.CreateWorld(_gameStateMachine);
             
             _canvas = PoolManager.GetObject("GameHud");
             var screen = _canvas.GetComponent<GameScreen>();
 
-            var scoreView = screen.ScoreCounterView;
+            var scoreView = screen.scoreCounterView;
             var scoreController = new ScoreCounterController(scoreView, ecsLoader.World);
 
             var laserChargeCounterView = screen.LaserChargeCounterView;
             var laserChargeCounterController = new LaserChargeCounterController(laserChargeCounterView, ecsLoader.World);
             
             ecsLoader.StartSystems();
-            _gameStateMachine.Enter<GameLoopState>();
+            _gameStateMachine.Enter<GameLoopState, EcsLoader>(ecsLoader);
         }
         
         public void Exit()

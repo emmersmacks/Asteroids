@@ -8,6 +8,7 @@ using Game.Systems.Asteroids;
 using Game.Systems.Initialize;
 using Game.Systems.Player;
 using Game.Systems.UFO;
+using Infrastructure.StateMachine;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -20,12 +21,15 @@ namespace Infrastructure
         private EcsSystems _initializeSystems;
         private EcsSystems _updateSystems;
         private EcsSystems _fixedUpdateSystems;
+
+        private GameStateMachine _gameStateMachine;
         
         public CustomEcsWorld World;
 
-        public void CreateWorld()
+        public void CreateWorld(GameStateMachine stateMachine)
         {
             World = new CustomEcsWorld();
+            _gameStateMachine = stateMachine;
         }
         
         public void StartSystems()
@@ -47,6 +51,7 @@ namespace Infrastructure
         private void AddInjections()
         {
             _updateSystems.Inject(_playerBulletParameters);
+            _updateSystems.Inject(_gameStateMachine);
         }
 
         private void AddSystems()
@@ -69,6 +74,9 @@ namespace Infrastructure
             _updateSystems.Add(new FollowPlayerSystem());
             _updateSystems.Add(new SpawnUFOSystem());
             _updateSystems.Add(new ChargeRecoverySystem());
+            _updateSystems.Add(new CheckPlayerDeadSystem());
+            _updateSystems.Add(new StartEndGameSystem());
+            _updateSystems.Add(new CheckEnemyDeadSystem());
             _updateSystems.Add(new DestroyEntitySystem());
 
             _fixedUpdateSystems.Add(new ForceMoveSystem());
@@ -92,12 +100,13 @@ namespace Infrastructure
                 _fixedUpdateSystems.Run();
         }
 
-        public void OnDestroy()
+        public void OnDisable()
         {
             if (World != null)
             {
                 _updateSystems.Destroy();
                 _fixedUpdateSystems.Destroy();
+                _initializeSystems.Destroy();
                 World.Destroy();
             }
         }

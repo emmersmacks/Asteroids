@@ -27,6 +27,14 @@ namespace Infrastructure.ObjectsPool
             }
         }
 
+        public static void ClearPool()
+        {
+            for (int i = 0; i < objectsParent.transform.childCount; i++)
+            {
+                var poolObject = objectsParent.transform.GetChild(i);
+                poolObject.GetComponent<PoolObject>().ReturnToPool();
+            }
+        }
 
         public static GameObject GetObject (string name, Vector3 position = default, Quaternion rotation = default) {
             GameObject result = null;

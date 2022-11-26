@@ -26,8 +26,6 @@ namespace Actions.Systems
         {
             foreach (var index in _actionGroup)
             {
-                var entity = _actionGroup.GetEntity(index);
-
                 foreach (var weaponIndex in _weaponsGroup)
                 {
                     var weaponEntity = _weaponsGroup.GetEntity(weaponIndex);

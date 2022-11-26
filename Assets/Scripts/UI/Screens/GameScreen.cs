@@ -6,7 +6,7 @@ namespace UI.Screens
 {
     public class GameScreen : MonoBehaviour
     {
-        public ScoreCounterView ScoreCounterView;
+        public ScoreCounterView scoreCounterView;
         public LaserChargeCounterView LaserChargeCounterView;
     }
 }

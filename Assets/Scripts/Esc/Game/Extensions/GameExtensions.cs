@@ -95,6 +95,7 @@ namespace Game.Extensions
         {
             var entity = world.NewEntity();
             entity.AddPrefab("Level");
+            entity.Get<ScoreComponent>();
             entity.Get<LevelTagComponent>();
             return entity;
         }
@@ -144,9 +145,12 @@ namespace Game.Extensions
             entity.Replace(new SpeedComponent() { Value = 2 });
             entity.Replace(new DirectionComponent() { Value = Vector2.up });
             entity.Replace(new AsteroidSizeComponent() { Value = EAsteroidSizeType.Big });
-            
+            entity.Replace(new CostInPointsComponent() { Value = 5 });
+
+            entity.Get<EnemyTagComponent>();
             entity.Get<TransformMoveComponent>();
             entity.Get<AsteroidTagComponent>();
+            entity.Get<UnitComponent>();
             return entity;
         }
         
@@ -157,9 +161,11 @@ namespace Game.Extensions
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             entity.Replace(new SpeedComponent() { Value = 2 });
             entity.Replace(new DirectionComponent() { Value = Vector2.up });
-            
+            entity.Replace(new CostInPointsComponent() { Value = 5 });
+
+            entity.Get<EnemyTagComponent>();
             entity.Get<TransformMoveComponent>();
-            entity.Get<PlayerTagComponent>();
+            entity.Get<UnitComponent>();
             return entity;
         }
 
@@ -171,7 +177,9 @@ namespace Game.Extensions
             entity.Replace(new RigidbodyComponent() { Value = gameObject.GetComponent<Rigidbody2D>() });
             entity.Replace(new SpeedComponent() { Value = 3 });
             entity.Replace(new DirectionComponent() { Value = Vector2.up });
-            
+            entity.Replace(new CostInPointsComponent() { Value = 5 });
+
+            entity.Get<EnemyTagComponent>();
             entity.Get<FollowPlayerComponent>();
             entity.Get<ForceMoveComponent>();
             entity.Get<UnitComponent>();

@@ -488,7 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67c335f81a74573bfa4281610847afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreCounterView: {fileID: 3195582585129590678}
+  scoreCounterView: {fileID: 3195582585129590678}
   LaserChargeCounterView: {fileID: 6828701842780800043}
 --- !u!114 &1281429329838584883
 MonoBehaviour:

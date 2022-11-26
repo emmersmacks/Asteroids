@@ -108,6 +108,10 @@ MonoBehaviour:
     prefab: {fileID: 7631162529187046876, guid: e5de1299250b24a45ac5ad234a63dbe8, type: 3}
     count: 10
     ferula: {fileID: 1169838080651080587}
+  - name: EndGameHud
+    prefab: {fileID: -8017695040490191884, guid: f210d14773d75594291b6362e92b9d70, type: 3}
+    count: 1
+    ferula: {fileID: 1169838080651080587}
 --- !u!1 &5955907497439027165
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ namespace Game.Systems.Initialize
         {
             var player = _world.CreatePlayer(Vector3.zero);
             _world.CreateMainWeapon(Vector3.zero, player);
+            _world.CreateLaserWeapon(Vector3.zero, player);
             _world.CreateLevel();
         }
     }

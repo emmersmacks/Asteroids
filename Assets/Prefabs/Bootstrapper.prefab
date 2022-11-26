@@ -79,7 +79,7 @@ MonoBehaviour:
     prefab: {fileID: 2635040441935640916, guid: 61faae84b287f22428f5f685f2288523, type: 3}
     count: 1
     ferula: {fileID: 1169838080651080587}
-  - name: PlayerBullet
+  - name: DefaultBullet
     prefab: {fileID: 6600213363873381434, guid: c8c4d714292ee074498c964b5c164a76, type: 3}
     count: 10
     ferula: {fileID: 1169838080651080587}
@@ -98,6 +98,18 @@ MonoBehaviour:
   - name: SmallAsteroid
     prefab: {fileID: 6370030334638132110, guid: 27cf35fa9d05205499984444f230f7ed, type: 3}
     count: 20
+    ferula: {fileID: 1169838080651080587}
+  - name: UFO
+    prefab: {fileID: 8287552351059567613, guid: 6484fd22cb67f8a42af290c98978f7ed, type: 3}
+    count: 10
+    ferula: {fileID: 1169838080651080587}
+  - name: LaserGun
+    prefab: {fileID: 3251168401403844700, guid: a86844106e72e614db34287851a0ee59, type: 3}
+    count: 1
+    ferula: {fileID: 1169838080651080587}
+  - name: LaserBullet
+    prefab: {fileID: 6600213363873381434, guid: 1574a1cbc4604b547a7edf0f1a9cfe63, type: 3}
+    count: 10
     ferula: {fileID: 1169838080651080587}
 --- !u!1 &5955907497439027165
 GameObject:

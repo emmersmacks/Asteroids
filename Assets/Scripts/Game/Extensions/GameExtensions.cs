@@ -25,10 +25,10 @@ namespace Game.Extensions
             return entity;
         }
 
-        public static EcsEntity CreatePlayerBullet(this EcsWorld world, Vector3 position, Quaternion rotation, LayerMask damageLayer)
+        public static EcsEntity CreateBullet(this EcsWorld world, Vector3 position, Quaternion rotation, LayerMask damageLayer)
         {
             var entity = world.NewEntity();
-            var gameObject = entity.AddPrefab("PlayerBullet", position, rotation);
+            var gameObject = entity.AddPrefab("DefaultBullet", position, rotation);
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             entity.Replace(new SpeedComponent() { Value = 30 });
             entity.Replace(new DirectionComponent() { Value = Vector2.up });
@@ -36,7 +36,19 @@ namespace Game.Extensions
             entity.Replace(new OldPositionComponent() { Value = position });
             entity.Get<BulletComponent>();
             entity.Get<TransformMoveComponent>();
-            entity.Get<PlayerTagComponent>();
+            return entity;
+        }
+        
+        public static EcsEntity CreateLaserBullet(this EcsWorld world, Vector3 startPosition, Vector3 direction, LayerMask damageLayer)
+        {
+            var entity = world.NewEntity();
+            var gameObject = entity.AddPrefab("LaserBullet", startPosition);
+            entity.Replace(new TransformComponent() { Value = gameObject.transform });
+            entity.Replace(new DamageLayerComponent() { Value = damageLayer });
+            var lineRenderer = gameObject.GetComponent<LineRenderer>();
+            lineRenderer.SetPosition(0, startPosition);
+            lineRenderer.SetPosition(1, direction);
+            entity.Get<BulletComponent>();
             return entity;
         }
         
@@ -51,16 +63,33 @@ namespace Game.Extensions
             entity.Get<PlayerTagComponent>();
             return entity;
         }
+        
+        public static EcsEntity CreateLaserWeapon(this EcsWorld world, Vector3 position, EcsEntity player)
+        {
+            var entity = world.NewEntity();
+            var gameObject = entity.AddPrefab("LaserGun", position);
+            entity.Replace(new TransformComponent() { Value = gameObject.transform });
+            entity.Replace(new SpawnPointsComponent() { Value = gameObject.GetComponent<WeaponView>().BulletSpawnPoints });
+            entity.AddParent(player);
+            entity.Get<AdditionalWeaponComponent>();
+            entity.Get<PlayerTagComponent>();
+            return entity;
+        }
 
         public static EcsEntity CreateLevel(this EcsWorld world)
         {
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab("Level");
-            entity.Replace(new AsteroidSpawnPointsComponent() { Value = gameObject.GetComponent<LevelView>().AsteroidSpawnPoints });
+            
+            var asteroidsSpawnerEntity = world.NewEntity();
+            asteroidsSpawnerEntity.Replace(new AsteroidSpawnPointsComponent() { Value = gameObject.GetComponent<LevelView>().AsteroidSpawnPoints });
+            var UFOSpawnerEntity = world.NewEntity();
+            UFOSpawnerEntity.Replace(new UFOSpawnPointsComponent() { Value = gameObject.GetComponent<LevelView>().UFOSpawnPoints });
+            
             entity.Get<LevelTagComponent>();
             return entity;
         }
-        
+
         public static EcsEntity CreateBigAsteroid(this EcsWorld world, Vector3 position, Vector3 spawnAngle)
         {
             var entity = world.NewEntity();
@@ -92,9 +121,12 @@ namespace Game.Extensions
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab("UFO", position);
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
-            entity.Replace(new SpeedComponent() { Value = 2 });
-            entity.Replace(new DirectionComponent());
-            entity.Get<TransformMoveComponent>();
+            entity.Replace(new RigidbodyComponent() { Value = gameObject.GetComponent<Rigidbody2D>() });
+            entity.Replace(new SpeedComponent() { Value = 3 });
+            entity.Replace(new DirectionComponent() { Value = Vector2.up });
+            entity.Get<FollowPlayerComponent>();
+            entity.Get<ForceMoveComponent>();
+            entity.Get<UnitComponent>();
             return entity;
         }
     }

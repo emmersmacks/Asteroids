@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace Game.Systems
 {
-    public class CheckPlayerBulletDamageSystem : IEcsRunSystem
+    public class CheckBulletDamageSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         
-        private readonly EcsFilter<PlayerTagComponent, TransformComponent, BulletComponent, DamageLayerComponent>.Exclude<DestroyComponent> _bulletsGroup;
+        private readonly EcsFilter<TransformComponent, BulletComponent, DamageLayerComponent>.Exclude<DestroyComponent> _bulletsGroup;
 
         public void Run()
         {
@@ -41,7 +41,6 @@ namespace Game.Systems
                     entity.Get<DestroyComponent>();
                     bulletEntity.Get<DestroyComponent>();
                 }
-
             }
         }
     }

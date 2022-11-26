@@ -25,6 +25,11 @@ namespace Game.Systems
                 {
                     _world.NewEntity().Replace(new StartPlayerMainAttackComponent());
                 }
+                
+                if (Input.GetMouseButtonDown(1))
+                {
+                    _world.NewEntity().Replace(new StartPlayerLaserAttackComponent());
+                }
 
                 var directionComponent = new DirectionComponent() { Value = direction };
                 entity.Replace(directionComponent);

@@ -41,7 +41,7 @@ namespace Actions.Systems
                         if (!spawnPoints[i].IsSpawned)
                         {
                             var weaponRotation = weaponEntity.Get<TransformComponent>().Value.rotation;
-                            _world.CreatePlayerBullet(spawnPoints[i].Point.position, weaponRotation, _playerBulletParameters.DamageLayerMask);
+                            _world.CreateBullet(spawnPoints[i].Point.position, weaponRotation, _playerBulletParameters.DamageLayerMask);
                             spawnPoints[i] = new BulletSpawnPointBase() { Point = spawnPoints[i].Point, IsSpawned = true};
                             return;
                         }

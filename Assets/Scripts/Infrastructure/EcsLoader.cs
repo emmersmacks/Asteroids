@@ -47,12 +47,16 @@ namespace Infrastructure
             _updateSystems.Add(new DesktopInputSystem());
             _updateSystems.Add(new RotateSystem());
             _updateSystems.Add(new StartPlayerMainAttackSystem());
+            _updateSystems.Add(new StartPlayerLaserAttackSystem());
             _updateSystems.Add(new TransformMoveSystem());
-            _updateSystems.Add(new CheckPlayerBulletDamageSystem());
+            _updateSystems.Add(new CheckBulletDamageSystem());
             _updateSystems.Add(new SplitAsteroidSystem());
             _updateSystems.Add(new DelayCountdownSystem());
+            _updateSystems.Add(new DestroyDelayCountdownSystem());
             _updateSystems.Add(new SpawnAsteroidsSystem());
             _updateSystems.Add(new ClearObjectsOnDistanceSystem());
+            _updateSystems.Add(new FollowPlayerSystem());
+            _updateSystems.Add(new SpawnUFOSystem());
             _updateSystems.Add(new DestroyEntitySystem());
 
             _fixedUpdateSystems.Add(new ForceMoveSystem());
@@ -61,6 +65,7 @@ namespace Infrastructure
         private void AddActions()
         {
             _updateSystems.OneFrame<StartPlayerMainAttackComponent>();
+            _updateSystems.OneFrame<StartPlayerLaserAttackComponent>();
         }
 
         public void Update()

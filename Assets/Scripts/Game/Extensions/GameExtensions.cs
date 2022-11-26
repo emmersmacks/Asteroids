@@ -35,6 +35,7 @@ namespace Game.Extensions
             entity.Replace(new DamageLayerComponent() { Value = damageLayer });
             entity.Replace(new OldPositionComponent() { Value = position });
             entity.Get<BulletComponent>();
+            entity.Get<TransformMoveComponent>();
             entity.Get<PlayerTagComponent>();
             return entity;
         }
@@ -60,27 +61,16 @@ namespace Game.Extensions
             return entity;
         }
         
-        public static EcsEntity CreateBigAsteroid(this EcsWorld world, Vector3 position, Vector2 moveDirection)
+        public static EcsEntity CreateBigAsteroid(this EcsWorld world, Vector3 position, Vector3 spawnAngle)
         {
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab("BigAsteroid", position);
+            gameObject.transform.eulerAngles = spawnAngle;
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             entity.Replace(new SpeedComponent() { Value = 2 });
-            
-            var transform = gameObject.transform;
-            float signedAngle = Vector2.SignedAngle(transform.up, (moveDirection - (Vector2)transform.position));
-
-            if (Mathf.Abs(signedAngle) >= 1e-3f)
-            {
-                var angles = transform.eulerAngles;
-                angles.z += signedAngle;
-                transform.eulerAngles = angles;
-            }
-
             entity.Replace(new DirectionComponent() { Value = Vector2.up });
             entity.Replace(new AsteroidSizeComponent() { Value = EAsteroidSizeType.Big });
-            entity.Get<BulletComponent>();
-            entity.Get<PlayerTagComponent>();
+            entity.Get<TransformMoveComponent>();
             entity.Get<AsteroidComponent>();
             return entity;
         }
@@ -91,12 +81,20 @@ namespace Game.Extensions
             var gameObject = entity.AddPrefab("SmallAsteroid", position, rotation);
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             entity.Replace(new SpeedComponent() { Value = 2 });
-
             entity.Replace(new DirectionComponent() { Value = Vector2.up });
-            entity.Replace(new AsteroidSizeComponent() { Value = EAsteroidSizeType.Small });
-
-            entity.Get<BulletComponent>();
+            entity.Get<TransformMoveComponent>();
             entity.Get<PlayerTagComponent>();
+            return entity;
+        }
+
+        public static EcsEntity CreateUFO(this EcsWorld world, Vector3 position)
+        {
+            var entity = world.NewEntity();
+            var gameObject = entity.AddPrefab("UFO", position);
+            entity.Replace(new TransformComponent() { Value = gameObject.transform });
+            entity.Replace(new SpeedComponent() { Value = 2 });
+            entity.Replace(new DirectionComponent());
+            entity.Get<TransformMoveComponent>();
             return entity;
         }
     }

@@ -47,7 +47,7 @@ namespace Infrastructure
             _updateSystems.Add(new DesktopInputSystem());
             _updateSystems.Add(new RotateSystem());
             _updateSystems.Add(new StartPlayerMainAttackSystem());
-            _updateSystems.Add(new BulletMoveSystem());
+            _updateSystems.Add(new TransformMoveSystem());
             _updateSystems.Add(new CheckPlayerBulletDamageSystem());
             _updateSystems.Add(new SplitAsteroidSystem());
             _updateSystems.Add(new DelayCountdownSystem());

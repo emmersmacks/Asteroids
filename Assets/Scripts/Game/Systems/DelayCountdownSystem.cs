@@ -14,15 +14,13 @@ namespace Game.Systems
             foreach (var index in _group)
             {
                 var entity = _group.GetEntity(index);
-                var delayComponent = entity.Get<DelayComponent>();
-                var currentDelay = delayComponent.Value;
+                var currentDelay = entity.Get<DelayComponent>().Value;
 
                 if (currentDelay <= 0)
                 {
                     entity.Del<DelayComponent>();
                     continue;
                 }
-
                 
                 var newTime = currentDelay - Time.deltaTime;
                 entity.Replace(new DelayComponent() { Value = newTime });

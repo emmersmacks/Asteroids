@@ -15,8 +15,7 @@ namespace Game.Systems
             {
                 var entity = _group.GetEntity(index);
 
-                var transformComponent = entity.Get<TransformComponent>();
-                var transform = transformComponent.Value;
+                var transform = entity.Get<TransformComponent>().Value;
 
                 var vectorLengthSqr = transform.position.sqrMagnitude;
                 if (vectorLengthSqr > 15 * 15)

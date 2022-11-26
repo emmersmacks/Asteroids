@@ -15,16 +15,12 @@ namespace Game.Systems
             {
                 var entity = _group.GetEntity(index);
                 
-                var directionComponent = entity.Get<DirectionComponent>();
-                var transformComponent = entity.Get<TransformComponent>();
-                var rotateSpeedComponent = entity.Get<RotateSpeedComponent>();
+                var direction = entity.Get<DirectionComponent>().Value;
+                var transform = entity.Get<TransformComponent>().Value;
+                var rotateSpeed = entity.Get<RotateSpeedComponent>().Value;
 
-                var transform = transformComponent.Value;
-                var direction = directionComponent.Value;
-                var speed = rotateSpeedComponent.Value;
-
-                transform.Rotate(new Vector3(0, 0, direction.x * speed * Time.deltaTime));
-
+                var zRotateAngle = direction.x * rotateSpeed * Time.deltaTime;
+                transform.Rotate(new Vector3(0, 0, zRotateAngle));
             }
         }
     }

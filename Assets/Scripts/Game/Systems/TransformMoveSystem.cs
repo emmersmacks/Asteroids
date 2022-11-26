@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Game.Systems
 {
-    public class ForceMoveSystem : IEcsRunSystem
+    public class TransformMoveSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<DirectionComponent, RigidbodyComponent, SpeedComponent, TransformComponent, ForceMoveComponent> _group;
-
+        private readonly EcsFilter<DirectionComponent, SpeedComponent, TransformComponent, TransformMoveComponent> _group;
+        
         public void Run()
         {
             foreach (var index in _group)
@@ -16,14 +16,15 @@ namespace Game.Systems
                 var entity = _group.GetEntity(index);
                 
                 var direction = entity.Get<DirectionComponent>().Value;
-                var rigidbody = entity.Get<RigidbodyComponent>().Value;
                 var speed = entity.Get<SpeedComponent>().Value;
                 var transform = entity.Get<TransformComponent>().Value;
-
-                var globalDirection = transform.TransformDirection(Vector2.up);
                 
-                if(direction != Vector2.zero && direction.y > 0)
-                    rigidbody.AddForce(globalDirection * speed);
+                var globalDirection = transform.TransformDirection(Vector2.up);
+                var movePosition = transform.position + globalDirection;
+                var moveDistance = speed * Time.deltaTime;
+                
+                if (direction != Vector2.zero)
+                    transform.position = Vector2.MoveTowards(transform.position, movePosition, moveDistance);
             }
         }
     }

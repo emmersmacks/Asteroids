@@ -26,8 +26,8 @@ namespace Game.Systems
                     _world.NewEntity().Replace(new StartPlayerMainAttackComponent());
                 }
 
-                var component = new DirectionComponent() { Value = direction };
-                entity.Replace(component);
+                var directionComponent = new DirectionComponent() { Value = direction };
+                entity.Replace(directionComponent);
             }
         }
     }

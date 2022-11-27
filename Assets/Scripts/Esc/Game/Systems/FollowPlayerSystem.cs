@@ -38,6 +38,9 @@ namespace Game.Systems
         {
             float signedAngle = Vector2.SignedAngle(eye ?? transform.up, direction - transform.position);
 
+            //Sorry for the magic numbers, but I do not know what this terrible number means
+            //Without this number, this thing doesn't work
+            //And I do not know why :)
             if (Mathf.Abs(signedAngle) >= 1e-3f)
             {
                 var angles = transform.eulerAngles;

@@ -2,7 +2,11 @@ using System;
 using Actions.Components;
 using Actions.Systems;
 using Data.Parameters;
+using Data.Parameters.Asteroids;
+using Data.Parameters.Level;
 using Data.Parameters.PlayerBullet.Impl;
+using Data.Parameters.PlayerBullet.Impl.Charges;
+using Data.Parameters.Spawners;
 using Game.Systems;
 using Game.Systems.Asteroids;
 using Game.Systems.Initialize;
@@ -16,7 +20,16 @@ namespace Infrastructure
 {
     public class EcsLoader : MonoBehaviour
     {
-        [SerializeField] private PlayerBulletParameters _playerBulletParameters;
+        [SerializeField] private PlayerBulletsParameters _playerBulletsParameters;
+        [SerializeField] private BigAsteroidParameters _bigAsteroidParameters;
+        [SerializeField] private SmallAsteroidsParameters _smallAsteroidsParameters;
+        [SerializeField] private ChargesParameters _chargesParameters;
+        [SerializeField] private LevelParameters _levelParameters;
+        [SerializeField] private PlayerParameters _playerParameters;
+        [SerializeField] private LaserWeaponParameters _laserWeaponParameters;
+        [SerializeField] private AsteroidsSpawnParameters _asteroidsSpawnParameters;
+        [SerializeField] private UFOSpawnParameters _ufoSpawnParameters;
+        [SerializeField] private UFOParameters _ufoParameters;
         
         private EcsSystems _initializeSystems;
         private EcsSystems _updateSystems;
@@ -39,9 +52,9 @@ namespace Infrastructure
             _fixedUpdateSystems = new EcsSystems(World);
             _initializeSystems = new EcsSystems(World);
 
-            AddInjections();
             AddSystems();
             AddActions();
+            AddInjections();
 
             _initializeSystems.Init ();
             _fixedUpdateSystems.Init();
@@ -50,7 +63,18 @@ namespace Infrastructure
 
         private void AddInjections()
         {
-            _updateSystems.Inject(_playerBulletParameters);
+            _updateSystems.Inject(_playerBulletsParameters);
+            _updateSystems.Inject(_bigAsteroidParameters);
+            _updateSystems.Inject(_smallAsteroidsParameters);
+            _initializeSystems.Inject(_chargesParameters);
+            _updateSystems.Inject(_chargesParameters);
+            _updateSystems.Inject(_levelParameters);
+            _initializeSystems.Inject(_playerParameters);
+            _updateSystems.Inject(_playerParameters);
+            _updateSystems.Inject(_laserWeaponParameters);
+            _updateSystems.Inject(_asteroidsSpawnParameters);
+            _updateSystems.Inject(_ufoSpawnParameters);
+            _updateSystems.Inject(_ufoParameters);
             _updateSystems.Inject(_gameStateMachine);
         }
 

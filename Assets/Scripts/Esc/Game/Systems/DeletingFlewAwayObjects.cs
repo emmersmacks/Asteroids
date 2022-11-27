@@ -1,3 +1,4 @@
+using Data.Parameters.Level;
 using Game.Components;
 using Infrastructure;
 using Leopotam.Ecs;
@@ -7,8 +8,10 @@ namespace Game.Systems
     public class DeletingFlewAwayObjects : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
-        private readonly EcsFilter<TransformComponent>.Exclude<DestroyComponent> _group = null;
 
+        private readonly LevelParameters _levelParameters = null;
+        
+        private readonly EcsFilter<TransformComponent>.Exclude<DestroyComponent> _group = null;
         
         public void Run()
         {
@@ -19,7 +22,9 @@ namespace Game.Systems
                 var transform = entity.Get<TransformComponent>().Value;
 
                 var vectorLengthSqr = transform.position.sqrMagnitude;
-                if (vectorLengthSqr > 15 * 15)
+                var clearDistance = _levelParameters.ClearFlewObjectsDistanse;
+                var avalibleDistanceSqr = clearDistance * clearDistance; 
+                if (vectorLengthSqr > avalibleDistanceSqr)
                 {
                     entity.Get<DestroyComponent>();
                 }

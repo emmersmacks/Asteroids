@@ -1,4 +1,5 @@
 using Data;
+using Data.Parameters.Asteroids;
 using Game.Components;
 using Game.Components.Asteroids;
 using Game.Components.Tags;
@@ -11,7 +12,11 @@ namespace Game.Systems.Asteroids
 {
     public class SplitAsteroidSystem : IEcsRunSystem
     {
+        private const int RotateDegrees = 45;
+        
         private readonly CustomEcsWorld _world = null;
+
+        private readonly SmallAsteroidsParameters _smallAsteroidsParameters = null;
         private readonly EcsFilter<AsteroidTagComponent, DestroyComponent, AsteroidSizeComponent> _group;
         
         public void Run()
@@ -29,14 +34,14 @@ namespace Game.Systems.Asteroids
                 var transform = transformComponent.Value;
                 var rotationEuler = transform.rotation.eulerAngles;
 
-                var zPositiveRotation = rotationEuler.z + 45;
-                var zNegativeRotation = rotationEuler.z - 45;
+                var zPositiveRotation = rotationEuler.z + RotateDegrees;
+                var zNegativeRotation = rotationEuler.z - RotateDegrees;
                 var positiveRotation = Quaternion.Euler(rotationEuler.x, rotationEuler.y, zPositiveRotation);
                 var negativeRotation = Quaternion.Euler(rotationEuler.x, rotationEuler.y, zNegativeRotation);
 
                 var position = transform.position;
-                _world.CreateSmallAsteroid(position, positiveRotation);
-                _world.CreateSmallAsteroid(position, negativeRotation);
+                _world.CreateSmallAsteroid(position, positiveRotation, _smallAsteroidsParameters);
+                _world.CreateSmallAsteroid(position, negativeRotation, _smallAsteroidsParameters);
             }
         }
     }

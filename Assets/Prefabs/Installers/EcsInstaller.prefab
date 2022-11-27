@@ -57,4 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7f3fb371b34bd98deb03b803d132f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerBulletParameters: {fileID: 11400000, guid: 6643323a243f16146a7709d2b1cc9870, type: 2}
+  _playerBulletsParameters: {fileID: 11400000, guid: 6643323a243f16146a7709d2b1cc9870, type: 2}
+  _bigAsteroidParameters: {fileID: 11400000, guid: 4d2fc08102f455640b813420ffa17286, type: 2}
+  _smallAsteroidsParameters: {fileID: 11400000, guid: f56e8436208a8b049a60c5dda98be33d, type: 2}
+  _chargesParameters: {fileID: 11400000, guid: 6766812b045337d4ba73a9b4a3f7819a, type: 2}
+  _levelParameters: {fileID: 11400000, guid: 44fa526a41e0c5b4ab172ee5a2137c39, type: 2}
+  _playerParameters: {fileID: 11400000, guid: 9bb9861ff34d254418263180d88725ae, type: 2}
+  _laserWeaponParameters: {fileID: 11400000, guid: ac8c139f64e6d6442880f70215e184d5, type: 2}
+  _asteroidsSpawnParameters: {fileID: 11400000, guid: a3059f23dc4c58c40950482d433f160c, type: 2}
+  _ufoSpawnParameters: {fileID: 11400000, guid: d708ca474f8807a4dba891f80670abb2, type: 2}
+  _ufoParameters: {fileID: 11400000, guid: ac4a990fb6354aa4f9af31a18b918e5e, type: 2}

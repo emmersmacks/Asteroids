@@ -1,4 +1,5 @@
 using Actions.Components;
+using Data.Parameters.PlayerBullet.Impl;
 using Esc.Game.Components.Tags;
 using Game.Components;
 using Game.Components.Tags;
@@ -10,6 +11,9 @@ namespace Game.Systems
     public class CheckPlayerDeadSystem : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
+        
+        private readonly PlayerParameters _playerParameters = null;
+
         
         private readonly EcsFilter<EnemyTagComponent, UnitComponent> _enemyGroup = null;
         private readonly EcsFilter<PlayerTagComponent, UnitComponent> _playerGroup = null;
@@ -28,7 +32,8 @@ namespace Game.Systems
                 var direction = enemyTransform.position - playerTransform.position;
 
                 var vectorLengthSqr = direction.sqrMagnitude;
-                if (vectorLengthSqr < 1 * 1)
+                var availableDistanceSqr = _playerParameters.DeadDistance * _playerParameters.DeadDistance;
+                if (vectorLengthSqr < availableDistanceSqr)
                 {
                     _world.NewEntity().Get<StartEndGameComponent>();
                 }

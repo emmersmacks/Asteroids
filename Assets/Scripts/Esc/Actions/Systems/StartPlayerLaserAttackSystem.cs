@@ -16,7 +16,7 @@ namespace Actions.Systems
 {
     public class StartPlayerLaserAttackSystem : IEcsRunSystem
     {
-        private readonly PlayerBulletParameters _playerBulletParameters = null;
+        private readonly LaserWeaponParameters _laserWeaponParameters = null;
         
         private readonly CustomEcsWorld _world = null;
 
@@ -42,12 +42,12 @@ namespace Actions.Systems
                     foreach (var point in spawnPoints)
                     {
                         var bullet = _world.CreateLaserBullet(point.Point.position,
-                            point.Point.transform.TransformPoint(Vector3.up * 20), _playerBulletParameters.DamageLayerMask);
-                        bullet.Replace(new DestroyDelayComponent() { Value = 0.1f });
+                            point.Point.transform.TransformPoint(Vector3.up * _laserWeaponParameters.HitDistance), _laserWeaponParameters.DamageLayerMask);
+                        bullet.Replace(new DestroyDelayComponent() { Value = _laserWeaponParameters.DestroyDelay });
                         
                         var damageLayer = bullet.Get<DamageLayerComponent>().Value;
 
-                        var hits = Physics2D.RaycastAll(point.Point.position, point.Point.transform.TransformVector(Vector3.up), 20, damageLayer);
+                        var hits = Physics2D.RaycastAll(point.Point.position, point.Point.transform.TransformVector(Vector3.up), _laserWeaponParameters.HitDistance, damageLayer);
                         foreach (var hit in hits)
                         {
                             var uid = hit.collider.gameObject.GetInstanceID();
@@ -57,7 +57,7 @@ namespace Actions.Systems
                         }
                     }
 
-                    var newChargesNumber = chargesNumber - 1;
+                    var newChargesNumber = chargesNumber - _laserWeaponParameters.ChargeСost;
                     _world.LaserChargeChange(newChargesNumber);
                     var chargesComponent = new ChargesComponent() { Value = newChargesNumber };
                     weaponEntity.Replace(chargesComponent);

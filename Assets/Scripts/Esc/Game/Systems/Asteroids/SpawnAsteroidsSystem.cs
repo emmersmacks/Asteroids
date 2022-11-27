@@ -1,3 +1,5 @@
+using Data.Parameters.Asteroids;
+using Data.Parameters.Spawners;
 using Game.Components;
 using Game.Components.SpawnPoints;
 using Game.Components.Tags;
@@ -11,6 +13,11 @@ namespace Game.Systems.Asteroids
     public class SpawnAsteroidsSystem : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
+        
+        private readonly AsteroidsSpawnParameters _spawnParameters = null;
+        private readonly BigAsteroidParameters _bigAsteroidParameters = null;
+
+
         private readonly EcsFilter<DirectedSpawnPointsComponent, AsteroidTagComponent>.Exclude<DelayComponent> _group;
         
         public void Run()
@@ -29,9 +36,9 @@ namespace Game.Systems.Asteroids
                 var transform = point.Point.transform;
             
                 var lookAngle = GetLookAngle(transform, moveDirection);
-                _world.CreateBigAsteroid(transform.position, lookAngle);
+                _world.CreateBigAsteroid(transform.position, lookAngle, _bigAsteroidParameters);
                 
-                var delayComponent = new DelayComponent() { Value = 3 };
+                var delayComponent = new DelayComponent() { Value = _spawnParameters.SpawnVo.SpawnDelay };
                 entity.Replace(delayComponent);
             }
         }

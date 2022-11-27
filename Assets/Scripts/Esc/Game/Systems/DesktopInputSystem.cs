@@ -10,6 +10,9 @@ namespace Game.Systems
 {
     public class DesktopInputSystem : IEcsRunSystem
     {
+        private const int LeftMouseButtonIndex = 0;
+        private const int RightMouseButtonIndex = 1;
+        
         private readonly CustomEcsWorld _world = null;
         private readonly EcsFilter<DirectionComponent, PlayerTagComponent, UnitComponent> _group = null;
 
@@ -23,12 +26,12 @@ namespace Game.Systems
                 var yDirection = Input.GetAxisRaw("Vertical");
                 var direction = new Vector2(xDirection, yDirection);
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(LeftMouseButtonIndex))
                 {
                     _world.NewEntity().Replace(new StartPlayerMainAttackComponent());
                 }
                 
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonDown(RightMouseButtonIndex))
                 {
                     _world.NewEntity().Replace(new StartPlayerLaserAttackComponent());
                 }

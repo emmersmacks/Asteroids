@@ -16,7 +16,7 @@ namespace Actions.Systems
 {
     public class StartPlayerMainAttackSystem : IEcsRunSystem
     {
-        private readonly PlayerBulletParameters _playerBulletParameters = null;
+        private readonly PlayerBulletsParameters _playerBulletsParameters = null;
         
         private readonly CustomEcsWorld _world = null;
 
@@ -45,7 +45,7 @@ namespace Actions.Systems
                         if (!spawnPoints[i].IsSpawned)
                         {
                             var weaponRotation = weaponEntity.Get<TransformComponent>().Value.rotation;
-                            _world.CreateBullet(spawnPoints[i].Point.position, weaponRotation, _playerBulletParameters.DamageLayerMask);
+                            _world.CreateBullet(spawnPoints[i].Point.position, weaponRotation, _playerBulletsParameters);
                             spawnPoints[i] = new BoolSpawnPointBase() { Point = spawnPoints[i].Point, IsSpawned = true};
                             return;
                         }

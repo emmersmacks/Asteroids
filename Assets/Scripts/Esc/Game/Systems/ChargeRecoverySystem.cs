@@ -1,3 +1,4 @@
+using Data.Parameters.PlayerBullet.Impl.Charges;
 using Game.Components;
 using Game.Components.Tags;
 using Infrastructure;
@@ -10,6 +11,8 @@ namespace Game.Systems
     {
         private readonly CustomEcsWorld _world = null;
         
+        private readonly ChargesParameters _chargeParameters = null;
+
         private readonly EcsFilter<WeaponTagComponent, ChargesComponent, MaxChargesComponent>.Exclude<DestroyComponent, DelayComponent> _bulletsGroup;
         
         public void Run()
@@ -24,12 +27,12 @@ namespace Game.Systems
                 if (currentCharges >= maxCharges)
                     continue;
 
-                var newChargesNumber = currentCharges + 1;
+                var newChargesNumber = currentCharges + _chargeParameters.ChargesRestored;
                 var chargesComponent = new ChargesComponent() { Value = newChargesNumber };
                 _world.LaserChargeChange(newChargesNumber);
                 entity.Replace(chargesComponent);
                 
-                var delayComponent = new DelayComponent() { Value = 2 };
+                var delayComponent = new DelayComponent() { Value = _chargeParameters.RecoveryTime };
                 entity.Replace(delayComponent);
             }
         }

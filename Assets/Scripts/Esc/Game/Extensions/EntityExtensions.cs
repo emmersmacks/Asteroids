@@ -1,9 +1,9 @@
-using Game.Components;
+using Esc.Game.Components;
 using Infrastructure.ObjectsPool;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Game.Extensions
+namespace Esc.Game.Extensions
 {
     public static class EntityExtensions
     {

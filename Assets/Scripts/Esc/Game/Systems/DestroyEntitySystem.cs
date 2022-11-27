@@ -1,9 +1,9 @@
-using Game.Components;
+using Esc.Game.Components;
 using Infrastructure;
 using Infrastructure.ObjectsPool;
 using Leopotam.Ecs;
 
-namespace Game.Systems
+namespace Esc.Game.Systems
 {
     public class DestroyEntitySystem : IEcsRunSystem
     {

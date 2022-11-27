@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Data.Parameters
+namespace Data.Parameters.UFO
 {
     [CreateAssetMenu(menuName = nameof(UFOParameters), fileName = nameof(UFOParameters))]
     public class UFOParameters : ScriptableObject

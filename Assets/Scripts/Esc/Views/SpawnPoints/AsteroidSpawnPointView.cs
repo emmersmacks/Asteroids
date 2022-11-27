@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Views.SpawnPoints
+namespace Esc.Views.SpawnPoints
 {
     public class AsteroidSpawnPointView : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-using UI.Menu;
+using UI.Parts.Game.Menu;
 using UnityEngine;
 
 namespace UI.Screens

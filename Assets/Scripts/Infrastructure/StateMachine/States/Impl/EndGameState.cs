@@ -1,7 +1,6 @@
 ﻿using Data;
 using Data.Bases;
 using Infrastructure.ObjectsPool;
-using UI.Game.ScoreCounter;
 using UI.Parts.Game.EndGame;
 using UI.Parts.Game.ScoreResult;
 using UI.Screens;

@@ -1,6 +1,4 @@
-using System;
-
-namespace Game.Components
+namespace Esc.Game.Components.Tags
 {
     public struct WeaponTagComponent
     {

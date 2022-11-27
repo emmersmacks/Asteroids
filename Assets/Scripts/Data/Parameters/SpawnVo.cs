@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Data.Parameters.Spawners
+namespace Data.Parameters
 {
     [Serializable]
     public class SpawnVo

@@ -1,9 +1,9 @@
-using Game.Components;
+using Esc.Game.Components;
 using Infrastructure;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Game.Systems
+namespace Esc.Game.Systems
 {
     public class ForceMoveSystem : IEcsRunSystem
     {

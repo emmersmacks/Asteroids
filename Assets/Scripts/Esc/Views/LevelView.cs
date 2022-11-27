@@ -1,7 +1,7 @@
-using Game.Views.SpawnPoints;
+using Esc.Views.SpawnPoints;
 using UnityEngine;
 
-namespace Game.Views
+namespace Esc.Views
 {
     public class LevelView : MonoBehaviour
     {

@@ -1,11 +1,11 @@
 using Data.Parameters.Level;
-using Game.Components;
-using Game.Components.Tags;
+using Esc.Game.Components;
+using Esc.Game.Components.Tags;
 using Infrastructure;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Game.Systems
+namespace Esc.Game.Systems
 {
     public class StopAtBorderFieldSystem : IEcsRunSystem
     {

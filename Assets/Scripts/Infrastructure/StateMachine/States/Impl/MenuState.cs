@@ -1,6 +1,6 @@
 ﻿using Data;
 using Infrastructure.ObjectsPool;
-using UI.Menu;
+using UI.Parts.Game.Menu;
 using UI.Screens;
 using UnityEngine;
 

@@ -1,7 +1,6 @@
 using Infrastructure;
-using Leopotam.Ecs;
 
-namespace UI.Game.ScoreCounter
+namespace UI.Parts.Game.GameScoreCounter
 {
     public class ScoreCounterController
     {

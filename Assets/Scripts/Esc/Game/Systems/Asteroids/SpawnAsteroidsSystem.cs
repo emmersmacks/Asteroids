@@ -1,14 +1,13 @@
 using Data.Parameters.Asteroids;
-using Data.Parameters.Spawners;
-using Game.Components;
-using Game.Components.SpawnPoints;
-using Game.Components.Tags;
-using Game.Extensions;
+using Esc.Game.Components;
+using Esc.Game.Components.SpawnPoints;
+using Esc.Game.Components.Tags;
+using Esc.Game.Extensions;
 using Infrastructure;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Game.Systems.Asteroids
+namespace Esc.Game.Systems.Asteroids
 {
     public class SpawnAsteroidsSystem : IEcsRunSystem
     {

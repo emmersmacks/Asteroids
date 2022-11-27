@@ -1,10 +1,10 @@
 using Data;
-using Game.Extensions;
-using Game.Views;
+using Esc.Game.Extensions;
+using Esc.Views;
 using Infrastructure;
 using Leopotam.Ecs;
 
-namespace Game.Systems.Initialize
+namespace Esc.Game.Systems.Initialize
 {
     public class LevelInitializeSystem : IEcsInitSystem
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Data.Parameters.Spawners
+namespace Data.Parameters.Asteroids
 {
     [CreateAssetMenu(menuName = nameof(AsteroidsSpawnParameters), fileName = nameof(AsteroidsSpawnParameters))]
     public class AsteroidsSpawnParameters : ScriptableObject

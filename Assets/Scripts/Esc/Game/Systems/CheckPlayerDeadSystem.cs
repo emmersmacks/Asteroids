@@ -1,12 +1,11 @@
-using Actions.Components;
-using Data.Parameters.PlayerBullet.Impl;
+using Data.Parameters.Player;
+using Esc.Actions.Components;
+using Esc.Game.Components;
 using Esc.Game.Components.Tags;
-using Game.Components;
-using Game.Components.Tags;
 using Infrastructure;
 using Leopotam.Ecs;
 
-namespace Game.Systems
+namespace Esc.Game.Systems
 {
     public class CheckPlayerDeadSystem : IEcsRunSystem
     {

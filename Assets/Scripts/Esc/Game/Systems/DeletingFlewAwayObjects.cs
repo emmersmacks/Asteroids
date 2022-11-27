@@ -1,9 +1,9 @@
 using Data.Parameters.Level;
-using Game.Components;
+using Esc.Game.Components;
 using Infrastructure;
 using Leopotam.Ecs;
 
-namespace Game.Systems
+namespace Esc.Game.Systems
 {
     public class DeletingFlewAwayObjects : IEcsRunSystem
     {

@@ -1,10 +1,8 @@
 using System;
-using Game.Components;
-using Infrastructure.ObjectsPool;
+using Esc.Game.Components;
 using Leopotam.Ecs;
-using UnityEngine;
 
-namespace Game.Extensions
+namespace Esc.Game.Extensions
 {
     public static class EcsExtensions
     {

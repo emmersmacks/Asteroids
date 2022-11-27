@@ -1,6 +1,6 @@
 using Data.Bases;
 
-namespace Game.Components.SpawnPoints
+namespace Esc.Game.Components.SpawnPoints
 {
     public struct DirectedSpawnPointsComponent
     {

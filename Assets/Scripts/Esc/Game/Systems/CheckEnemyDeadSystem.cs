@@ -1,16 +1,14 @@
+using Esc.Game.Components;
 using Esc.Game.Components.Tags;
-using Game.Components;
-using Game.Components.Tags;
 using Infrastructure;
 using Infrastructure.ObjectsPool;
 using Leopotam.Ecs;
 
-namespace Game.Systems
+namespace Esc.Game.Systems
 {
     public class CheckEnemyDeadSystem : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
-        
         
         private readonly EcsFilter<DestroyComponent, EnemyTagComponent, CostInPointsComponent, KilledTagComponent> _enemyGroup = null;
         private readonly EcsFilter<LevelTagComponent>.Exclude<DestroyComponent> _levelGroup = null;

@@ -1,11 +1,11 @@
-using Data.Parameters.PlayerBullet.Impl;
-using Data.Parameters.PlayerBullet.Impl.Charges;
-using Game.Extensions;
+using Data.Parameters.Charges;
+using Data.Parameters.Player;
+using Esc.Game.Extensions;
 using Infrastructure;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Game.Systems.Initialize
+namespace Esc.Game.Systems.Initialize
 {
     public class PlayerInitializeSystem : IEcsInitSystem
     {

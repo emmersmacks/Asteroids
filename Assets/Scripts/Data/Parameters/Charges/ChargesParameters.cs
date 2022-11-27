@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Data.Parameters.PlayerBullet.Impl.Charges
+namespace Data.Parameters.Charges
 {
     [CreateAssetMenu(menuName = nameof(ChargesParameters), fileName = nameof(ChargesParameters))]
     public class ChargesParameters : ScriptableObject

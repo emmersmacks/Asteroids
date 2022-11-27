@@ -1,4 +1,3 @@
-using UI.Game.ScoreCounter;
 using UI.Parts.Game.EndGame;
 using UI.Parts.Game.ScoreResult;
 using UnityEngine;

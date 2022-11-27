@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace UI.Game.ScoreCounter
+namespace UI.Parts.Game.GameScoreCounter
 {
     public class ScoreCounterView : MonoBehaviour
     {

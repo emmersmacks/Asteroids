@@ -1,6 +1,6 @@
 using Data;
 
-namespace Game.Components.Asteroids
+namespace Esc.Game.Components.Asteroids
 {
     public struct AsteroidSizeComponent
     {

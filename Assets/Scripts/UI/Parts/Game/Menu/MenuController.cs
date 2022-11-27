@@ -2,7 +2,7 @@ using Infrastructure.StateMachine;
 using Infrastructure.StateMachine.States.Impl;
 using UnityEngine;
 
-namespace UI.Menu
+namespace UI.Parts.Game.Menu
 {
     public class MenuController
     {

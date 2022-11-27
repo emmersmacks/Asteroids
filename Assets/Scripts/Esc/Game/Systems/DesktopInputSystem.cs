@@ -1,12 +1,11 @@
-using Actions.Components;
-using Game.Components;
-using Game.Components.Tags;
+using Esc.Actions.Components;
+using Esc.Game.Components;
+using Esc.Game.Components.Tags;
 using Infrastructure;
 using Leopotam.Ecs;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Game.Systems
+namespace Esc.Game.Systems
 {
     public class DesktopInputSystem : IEcsRunSystem
     {

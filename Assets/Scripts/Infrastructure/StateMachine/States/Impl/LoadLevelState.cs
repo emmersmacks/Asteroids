@@ -1,8 +1,7 @@
 ﻿
 using Data;
 using Infrastructure.ObjectsPool;
-using UI.Game.ScoreCounter;
-using UI.Menu;
+using UI.Parts.Game.GameScoreCounter;
 using UI.Parts.Game.LaserСhargeCounter;
 using UI.Screens;
 using UnityEngine;

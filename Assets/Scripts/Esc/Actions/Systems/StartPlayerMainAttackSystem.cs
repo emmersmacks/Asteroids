@@ -1,18 +1,14 @@
-using Actions.Components;
-using Data;
 using Data.Bases;
-using Data.Parameters;
-using Data.Parameters.PlayerBullet;
-using Data.Parameters.PlayerBullet.Impl;
-using Game.Components;
-using Game.Components.SpawnPoints;
-using Game.Components.Tags;
-using Game.Extensions;
+using Data.Parameters.PlayerBullets;
+using Esc.Actions.Components;
+using Esc.Game.Components;
+using Esc.Game.Components.SpawnPoints;
+using Esc.Game.Components.Tags;
+using Esc.Game.Extensions;
 using Infrastructure;
 using Leopotam.Ecs;
-using UnityEngine;
 
-namespace Actions.Systems
+namespace Esc.Actions.Systems
 {
     public class StartPlayerMainAttackSystem : IEcsRunSystem
     {

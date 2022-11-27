@@ -1,13 +1,11 @@
-using System;
+using Esc.Game.Components;
 using Esc.Game.Components.Tags;
-using Game.Components;
-using Game.Components.Tags;
-using Game.Extensions;
+using Esc.Game.Extensions;
 using Infrastructure;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Game.Systems
+namespace Esc.Game.Systems
 {
     public class CheckBulletHitSystem : IEcsRunSystem
     {

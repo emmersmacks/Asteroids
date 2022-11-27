@@ -1,4 +1,4 @@
-namespace Game.Components.Tags
+namespace Esc.Game.Components.Tags
 {
     public struct AsteroidTagComponent
     {

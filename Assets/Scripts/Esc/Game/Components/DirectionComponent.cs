@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Game.Components
+namespace Esc.Game.Components
 {
     public struct DirectionComponent
     {

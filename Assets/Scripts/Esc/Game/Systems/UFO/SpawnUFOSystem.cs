@@ -1,13 +1,12 @@
-using Data.Parameters;
-using Data.Parameters.Spawners;
-using Game.Components;
-using Game.Components.SpawnPoints;
-using Game.Components.Tags;
-using Game.Extensions;
+using Data.Parameters.UFO;
+using Esc.Game.Components;
+using Esc.Game.Components.SpawnPoints;
+using Esc.Game.Components.Tags;
+using Esc.Game.Extensions;
 using Infrastructure;
 using Leopotam.Ecs;
 
-namespace Game.Systems.UFO
+namespace Esc.Game.Systems.UFO
 {
     public class SpawnUFOSystem : IEcsRunSystem
     {

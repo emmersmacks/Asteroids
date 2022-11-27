@@ -1,14 +1,13 @@
-using Actions.Components;
 using Data.Bases;
-using Game.Components;
-using Game.Components.SpawnPoints;
-using Game.Components.Tags;
+using Esc.Actions.Components;
+using Esc.Game.Components;
+using Esc.Game.Components.Tags;
 using Infrastructure;
 using Infrastructure.StateMachine;
 using Infrastructure.StateMachine.States.Impl;
 using Leopotam.Ecs;
 
-namespace Actions.Systems
+namespace Esc.Actions.Systems
 {
     public class StartEndGameSystem : IEcsRunSystem
     {

@@ -1,21 +1,22 @@
 using System.Collections.Generic;
 using Data;
 using Data.Bases;
-using Data.Parameters;
 using Data.Parameters.Asteroids;
-using Data.Parameters.PlayerBullet.Impl;
-using Data.Parameters.PlayerBullet.Impl.Charges;
-using Game.Components;
-using Game.Components.Asteroids;
-using Game.Components.SpawnPoints;
-using Game.Components.Tags;
-using Game.Views;
-using Game.Views.SpawnPoints;
+using Data.Parameters.Charges;
+using Data.Parameters.Player;
+using Data.Parameters.PlayerBullets;
+using Data.Parameters.UFO;
+using Esc.Game.Components;
+using Esc.Game.Components.Asteroids;
+using Esc.Game.Components.SpawnPoints;
+using Esc.Game.Components.Tags;
+using Esc.Views;
+using Esc.Views.SpawnPoints;
 using Infrastructure;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Game.Extensions
+namespace Esc.Game.Extensions
 {
     public static class GameExtensions
     {

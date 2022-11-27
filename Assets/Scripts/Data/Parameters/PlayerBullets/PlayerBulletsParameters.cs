@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Data.Parameters.PlayerBullet.Impl
+namespace Data.Parameters.PlayerBullets
 {
     [CreateAssetMenu(menuName = nameof(PlayerBulletsParameters), fileName = nameof(PlayerBulletsParameters))]
     public class PlayerBulletsParameters : ScriptableObject

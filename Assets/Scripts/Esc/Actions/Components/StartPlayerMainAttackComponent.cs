@@ -1,7 +1,4 @@
-using System;
-using Leopotam.Ecs;
-
-namespace Actions.Components
+namespace Esc.Actions.Components
 {
     public struct StartPlayerMainAttackComponent
     {

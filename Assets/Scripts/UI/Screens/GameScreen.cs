@@ -1,4 +1,4 @@
-using UI.Game.ScoreCounter;
+using UI.Parts.Game.GameScoreCounter;
 using UI.Parts.Game.LaserСhargeCounter;
 using UnityEngine;
 

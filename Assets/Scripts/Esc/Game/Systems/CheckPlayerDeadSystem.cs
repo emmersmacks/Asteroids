@@ -15,11 +15,10 @@ namespace Esc.Game.Systems
 
         
         private readonly EcsFilter<EnemyTagComponent, UnitComponent>.Exclude<DestroyComponent> _enemyGroup = null;
-        private readonly EcsFilter<PlayerTagComponent, UnitComponent>.Exclude<DestroyComponent> _playerGroup = null;
-        
+
         public void Run()
         {
-            var playerEntity = _playerGroup.GetEntity(0);
+            var playerEntity = _world.Player;
 
             foreach (var enemyIndex in _enemyGroup)
             {

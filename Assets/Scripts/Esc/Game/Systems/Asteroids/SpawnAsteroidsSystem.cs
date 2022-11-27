@@ -17,13 +17,13 @@ namespace Esc.Game.Systems.Asteroids
         private readonly BigAsteroidParameters _bigAsteroidParameters = null;
 
 
-        private readonly EcsFilter<DirectedSpawnPointsComponent, AsteroidTagComponent>.Exclude<DelayComponent, DestroyComponent> _group;
+        private readonly EcsFilter<DirectedSpawnPointsComponent, AsteroidTagComponent>.Exclude<DelayComponent, DestroyComponent> _spawnerGroup;
         
         public void Run()
         {
-            foreach (var index in _group)
+            foreach (var index in _spawnerGroup)
             {
-                var entity = _group.GetEntity(index);
+                var entity = _spawnerGroup.GetEntity(index);
                 
                 var spawnPoints = entity.Get<DirectedSpawnPointsComponent>().Value;
 

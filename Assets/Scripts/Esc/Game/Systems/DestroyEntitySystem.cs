@@ -8,13 +8,13 @@ namespace Esc.Game.Systems
     public class DestroyEntitySystem : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
-        private readonly EcsFilter<DestroyComponent, TransformComponent> _group = null;
+        private readonly EcsFilter<DestroyComponent, TransformComponent> _entityGroup = null;
         
         public void Run()
         {
-            foreach (var index in _group)
+            foreach (var index in _entityGroup)
             {
-                var entity = _group.GetEntity(index);
+                var entity = _entityGroup.GetEntity(index);
                 
                 var transform = entity.Get<TransformComponent>().Value;
 

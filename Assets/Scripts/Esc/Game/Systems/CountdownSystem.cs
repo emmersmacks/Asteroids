@@ -8,13 +8,13 @@ namespace Esc.Game.Systems
     public class CountdownSystem : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
-        private readonly EcsFilter<DelayComponent>.Exclude<DestroyComponent> _group;
+        private readonly EcsFilter<DelayComponent>.Exclude<DestroyComponent> _delayGroup;
         
         public void Run()
         {
-            foreach (var index in _group)
+            foreach (var index in _delayGroup)
             {
-                var entity = _group.GetEntity(index);
+                var entity = _delayGroup.GetEntity(index);
                 var currentDelay = entity.Get<DelayComponent>().Value;
 
                 if (currentDelay <= 0)

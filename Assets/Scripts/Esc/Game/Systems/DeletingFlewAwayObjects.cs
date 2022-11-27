@@ -11,22 +11,22 @@ namespace Esc.Game.Systems
 
         private readonly LevelParameters _levelParameters = null;
         
-        private readonly EcsFilter<TransformComponent>.Exclude<DestroyComponent> _group = null;
+        private readonly EcsFilter<TransformComponent>.Exclude<DestroyComponent> _flewAwayGroup = null;
         
         public void Run()
         {
-            foreach (var index in _group)
+            foreach (var index in _flewAwayGroup)
             {
-                var entity = _group.GetEntity(index);
+                var flewAwayEntity = _flewAwayGroup.GetEntity(index);
 
-                var transform = entity.Get<TransformComponent>().Value;
+                var transform = flewAwayEntity.Get<TransformComponent>().Value;
 
                 var vectorLengthSqr = transform.position.sqrMagnitude;
                 var clearDistance = _levelParameters.ClearFlewObjectsDistanse;
                 var avalibleDistanceSqr = clearDistance * clearDistance; 
                 if (vectorLengthSqr > avalibleDistanceSqr)
                 {
-                    entity.Get<DestroyComponent>();
+                    flewAwayEntity.Get<DestroyComponent>();
                 }
             }
         }

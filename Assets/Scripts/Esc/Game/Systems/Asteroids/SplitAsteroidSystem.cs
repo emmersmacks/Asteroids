@@ -17,14 +17,13 @@ namespace Esc.Game.Systems.Asteroids
         private readonly CustomEcsWorld _world = null;
 
         private readonly SmallAsteroidsParameters _smallAsteroidsParameters = null;
-        private readonly EcsFilter<AsteroidTagComponent, DestroyComponent, AsteroidSizeComponent>
-            .Exclude<DestroyComponent> _group;
+        private readonly EcsFilter<AsteroidTagComponent, DestroyComponent, AsteroidSizeComponent> _destroyedAsteroidsGroup;
         
         public void Run()
         {
-            foreach (var index in _group)
+            foreach (var index in _destroyedAsteroidsGroup)
             {
-                var entity = _group.GetEntity(index);
+                var entity = _destroyedAsteroidsGroup.GetEntity(index);
                 var asteroidSizeComponent = entity.Get<AsteroidSizeComponent>();
                 var sizeType = asteroidSizeComponent.Value;
                 

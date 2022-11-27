@@ -9,13 +9,13 @@ namespace Esc.Game.Systems
     {
         private readonly CustomEcsWorld _world = null;
         private readonly EcsFilter<DirectionComponent, SpeedComponent, TransformComponent, TransformMoveComponent>
-            .Exclude<DestroyComponent> _group;
+            .Exclude<DestroyComponent> _moveGroup;
         
         public void Run()
         {
-            foreach (var index in _group)
+            foreach (var index in _moveGroup)
             {
-                var entity = _group.GetEntity(index);
+                var entity = _moveGroup.GetEntity(index);
                 
                 var direction = entity.Get<DirectionComponent>().Value;
                 var speed = entity.Get<SpeedComponent>().Value;

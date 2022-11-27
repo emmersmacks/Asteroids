@@ -24,6 +24,7 @@ namespace Esc.Game.Extensions
         {
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab(PrefabNames.Player, position);
+            world.SetUnique(ref world.Player, ref entity);
             entity.Replace(new RigidbodyComponent() { Value = gameObject.GetComponent<Rigidbody2D>() });
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             entity.Replace(new SpeedComponent() { Value = parameters.Speed });
@@ -96,9 +97,11 @@ namespace Esc.Game.Extensions
             return entity;
         }
 
-        public static EcsEntity CreateLevel(this CustomEcsWorld world, EcsEntity entity)
+        public static EcsEntity InitializeLevel(this CustomEcsWorld world, EcsEntity entity)
         {
+            world.SetUnique(ref world.Level, ref entity);
             entity.Get<ScoreComponent>();
+            world.ScoreChange(0);
             entity.Get<LevelTagComponent>();
             return entity;
         }

@@ -15,15 +15,15 @@ namespace Esc.Game.Systems.UFO
         private readonly UFOSpawnParameters _spawnParameters = null;
         private readonly UFOParameters _ufoParameters = null;
         
-        private readonly EcsFilter<SpawnPointsComponent, UFOTagComponent>.Exclude<DelayComponent> _group;
+        private readonly EcsFilter<SpawnPointsComponent, UFOTagComponent>.Exclude<DelayComponent> _spawnersGroup;
         
         public void Run()
         {
-            foreach (var index in _group)
+            foreach (var index in _spawnersGroup)
             {
-                var entity = _group.GetEntity(index);
+                var spawnerEntity = _spawnersGroup.GetEntity(index);
                 
-                var spawnPoints = entity.Get<SpawnPointsComponent>().Value;
+                var spawnPoints = spawnerEntity.Get<SpawnPointsComponent>().Value;
 
                 var random = new System.Random();
                 var randomIndex = random.Next(0, spawnPoints.Length);
@@ -34,7 +34,7 @@ namespace Esc.Game.Systems.UFO
                 _world.CreateUFO(transform.position, _ufoParameters);
 
                 var delayComponent = new DelayComponent() { Value = _spawnParameters.SpawnVo.SpawnDelay };
-                entity.Replace(delayComponent);
+                spawnerEntity.Replace(delayComponent);
             }
         }
         

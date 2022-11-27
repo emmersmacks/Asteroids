@@ -11,26 +11,22 @@ namespace Esc.Game.Systems
         private readonly CustomEcsWorld _world = null;
         
         private readonly EcsFilter<FollowPlayerComponent, TransformComponent>.Exclude<DestroyComponent> _followersGroup = null;
-        private readonly EcsFilter<PlayerTagComponent, UnitComponent, TransformComponent>.Exclude<DestroyComponent> _playersGroup = null;
-        
+
         public void Run()
         {
             foreach (var followerIndex in _followersGroup)
             {
-                foreach (var playerIndex in _playersGroup)
-                {
-                    var playerEntity = _playersGroup.GetEntity(playerIndex);
-                    var playerTransform = playerEntity.Get<TransformComponent>().Value;
-                    var playerPosition = playerTransform.position;
+                var playerEntity = _world.Player;
+                var playerTransform = playerEntity.Get<TransformComponent>().Value;
+                var playerPosition = playerTransform.position;
                     
-                    var followerEntity = _followersGroup.GetEntity(followerIndex);
-                    var followerTransform = followerEntity.Get<TransformComponent>().Value;
-                    var followerPosition = followerTransform.position;
+                var followerEntity = _followersGroup.GetEntity(followerIndex);
+                var followerTransform = followerEntity.Get<TransformComponent>().Value;
+                var followerPosition = followerTransform.position;
 
-                    var moveDirection = playerPosition - followerPosition;
-                    var lookAngle = GetLookAngle(followerTransform, playerPosition);
-                    followerTransform.eulerAngles = lookAngle;
-                }
+                var moveDirection = playerPosition - followerPosition;
+                var lookAngle = GetLookAngle(followerTransform, playerPosition);
+                followerTransform.eulerAngles = lookAngle;
             }
         }
         

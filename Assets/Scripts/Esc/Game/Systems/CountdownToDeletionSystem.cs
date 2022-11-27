@@ -8,24 +8,24 @@ namespace Esc.Game.Systems
     public class CountdownToDeletionSystem : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
-        private readonly EcsFilter<DestroyDelayComponent>.Exclude<DestroyComponent> _group;
+        private readonly EcsFilter<DestroyDelayComponent>.Exclude<DestroyComponent> _delayGroup;
         
         public void Run()
         {
-            foreach (var index in _group)
+            foreach (var index in _delayGroup)
             {
-                var entity = _group.GetEntity(index);
-                var currentDelay = entity.Get<DestroyDelayComponent>().Value;
+                var delayEntity = _delayGroup.GetEntity(index);
+                var currentDelay = delayEntity.Get<DestroyDelayComponent>().Value;
 
                 if (currentDelay <= 0)
                 {
-                    entity.Del<DestroyDelayComponent>();
-                    entity.Get<DestroyComponent>();
+                    delayEntity.Del<DestroyDelayComponent>();
+                    delayEntity.Get<DestroyComponent>();
                     continue;
                 }
                 
                 var newTime = currentDelay - Time.deltaTime;
-                entity.Replace(new DestroyDelayComponent() { Value = newTime });
+                delayEntity.Replace(new DestroyDelayComponent() { Value = newTime });
             }
         }
     }

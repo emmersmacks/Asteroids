@@ -9,18 +9,18 @@ namespace Esc.Game.Systems
     {
         private readonly CustomEcsWorld _world = null;
         private readonly EcsFilter<DirectionComponent, RigidbodyComponent, SpeedComponent, TransformComponent, ForceMoveComponent>
-            .Exclude<DestroyComponent> _group;
+            .Exclude<DestroyComponent> _moveGroup;
 
         public void Run()
         {
-            foreach (var index in _group)
+            foreach (var index in _moveGroup)
             {
-                var entity = _group.GetEntity(index);
+                var moveEntity = _moveGroup.GetEntity(index);
                 
-                var direction = entity.Get<DirectionComponent>().Value;
-                var rigidbody = entity.Get<RigidbodyComponent>().Value;
-                var speed = entity.Get<SpeedComponent>().Value;
-                var transform = entity.Get<TransformComponent>().Value;
+                var direction = moveEntity.Get<DirectionComponent>().Value;
+                var rigidbody = moveEntity.Get<RigidbodyComponent>().Value;
+                var speed = moveEntity.Get<SpeedComponent>().Value;
+                var transform = moveEntity.Get<TransformComponent>().Value;
 
                 var globalDirection = transform.TransformDirection(Vector2.up);
                 

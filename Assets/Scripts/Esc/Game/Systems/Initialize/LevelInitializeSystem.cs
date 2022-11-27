@@ -15,7 +15,7 @@ namespace Esc.Game.Systems.Initialize
             var levelEntity = _world.NewEntity();
             var gameObject = levelEntity.AddPrefab(PrefabNames.Level);
             var levelView = gameObject.GetComponent<LevelView>();
-            _world.CreateLevel(levelEntity);
+            _world.InitializeLevel(levelEntity);
 
             _world.InitializeAsteroidsSpawner(levelView.AsteroidSpawnPoints);
             _world.InitializeUFOSpawner(levelView.UFOSpawnPoints);

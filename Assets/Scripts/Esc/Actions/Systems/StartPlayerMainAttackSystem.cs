@@ -28,6 +28,8 @@ namespace Esc.Actions.Systems
                     var weaponEntity = _weaponsGroup.GetEntity(weaponIndex);
                     var spawnPointsComponent = weaponEntity.Get<SpawnPointsWithBoolComponent>();
                     var spawnPoints = spawnPointsComponent.Value;
+                    weaponEntity.ReplaceComponent(new ShootComponent());
+
                     if (spawnPoints[spawnPoints.Length - 1].IsSpawned)
                     {
                         for (int pointIndex = 0; pointIndex < spawnPoints.Length; pointIndex++)

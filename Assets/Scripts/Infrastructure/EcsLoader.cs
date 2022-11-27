@@ -8,6 +8,7 @@ using Data.Parameters.PlayerBullets;
 using Data.Parameters.UFO;
 using Esc.Actions.Components;
 using Esc.Actions.Systems;
+using Esc.Game.Components;
 using Esc.Game.Systems;
 using Esc.Game.Systems.Asteroids;
 using Esc.Game.Systems.Initialize;
@@ -111,6 +112,7 @@ namespace Infrastructure
         {
             _updateSystems.OneFrame<StartPlayerMainAttackComponent>();
             _updateSystems.OneFrame<StartPlayerLaserAttackComponent>();
+            _updateSystems.OneFrame<ShootComponent>();
         }
 
         public void Update()

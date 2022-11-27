@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Esc.Views
 {
-    public class LevelView : MonoBehaviour
+    public class LevelSpawnPointsView : ObjectView
     {
         public AsteroidSpawnPointView[] AsteroidSpawnPoints;
         public UFOSpawnPointView[] UFOSpawnPoints;

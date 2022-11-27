@@ -1,3 +1,5 @@
+using System;
+using System.Runtime.CompilerServices;
 using Esc.Game.Components;
 using Infrastructure.ObjectsPool;
 using Leopotam.Ecs;
@@ -11,7 +13,7 @@ namespace Esc.Game.Extensions
         {
             var gameObject = PoolManager.GetObject(name, position, rotation);
             var objectUid = gameObject.GetInstanceID();
-            entity.Replace(new UidComponent() { Value = objectUid });
+            entity.ReplaceComponent(new UidComponent() { Value = objectUid });
             return gameObject;
         }
         
@@ -21,6 +23,18 @@ namespace Esc.Game.Extensions
             var parentTransform = parentEntity.Get<TransformComponent>().Value;
             
             transform.SetParent(parentTransform);
+        }
+        
+        public static EcsEntity ReplaceComponent<T> (in this EcsEntity entity, in T item) where T : struct
+        {
+            if (entity.Has<ViewComponent>())
+            {
+                var view = entity.Get<ViewComponent>().Value;
+                if(view.EcsEvents.ContainsKey(item.GetType()))
+                    view.SendAddEvent(item);
+            }
+
+            return entity.Replace(item);
         }
     }
 }

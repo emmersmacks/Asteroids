@@ -34,6 +34,8 @@ namespace Esc.Actions.Systems
                     
                     var spawnPointsComponent = weaponEntity.Get<SpawnPointsWithBoolComponent>();
                     var spawnPoints = spawnPointsComponent.Value;
+                    
+                    weaponEntity.ReplaceComponent(new ShootComponent());
 
                     foreach (var point in spawnPoints)
                     {

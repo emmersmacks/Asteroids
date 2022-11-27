@@ -25,10 +25,10 @@ namespace Esc.Game.Extensions
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab(PrefabNames.Player, position);
             world.SetUnique(ref world.Player, ref entity);
-            entity.Replace(new RigidbodyComponent() { Value = gameObject.GetComponent<Rigidbody2D>() });
-            entity.Replace(new TransformComponent() { Value = gameObject.transform });
-            entity.Replace(new SpeedComponent() { Value = parameters.Speed });
-            entity.Replace(new RotateSpeedComponent() { Value = parameters.RotateSpeed });
+            entity.ReplaceComponent(new RigidbodyComponent() { Value = gameObject.GetComponent<Rigidbody2D>() });
+            entity.ReplaceComponent(new TransformComponent() { Value = gameObject.transform });
+            entity.ReplaceComponent(new SpeedComponent() { Value = parameters.Speed });
+            entity.ReplaceComponent(new RotateSpeedComponent() { Value = parameters.RotateSpeed });
             
             entity.Get<UnitComponent>();
             entity.Get<ForceMoveComponent>();
@@ -42,11 +42,11 @@ namespace Esc.Game.Extensions
         {
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab(PrefabNames.DefaultBullet, position, rotation);
-            entity.Replace(new TransformComponent() { Value = gameObject.transform });
-            entity.Replace(new SpeedComponent() { Value = parameters.Speed });
-            entity.Replace(new DirectionComponent() { Value = Vector2.up });
-            entity.Replace(new DamageLayerComponent() { Value = parameters.DamageLayerMask });
-            entity.Replace(new OldPositionComponent() { Value = position });
+            entity.ReplaceComponent(new TransformComponent() { Value = gameObject.transform });
+            entity.ReplaceComponent(new SpeedComponent() { Value = parameters.Speed });
+            entity.ReplaceComponent(new DirectionComponent() { Value = Vector2.up });
+            entity.ReplaceComponent(new DamageLayerComponent() { Value = parameters.DamageLayerMask });
+            entity.ReplaceComponent(new OldPositionComponent() { Value = position });
             
             entity.Get<BulletTagComponent>();
             entity.Get<TransformMoveComponent>();
@@ -57,8 +57,8 @@ namespace Esc.Game.Extensions
         {
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab(PrefabNames.LaserBullet, startPosition);
-            entity.Replace(new TransformComponent() { Value = gameObject.transform });
-            entity.Replace(new DamageLayerComponent() { Value = damageLayer });
+            entity.ReplaceComponent(new TransformComponent() { Value = gameObject.transform });
+            entity.ReplaceComponent(new DamageLayerComponent() { Value = damageLayer });
             var lineRenderer = gameObject.GetComponent<LineRenderer>();
             lineRenderer.SetPosition(0, startPosition);
             lineRenderer.SetPosition(1, direction);
@@ -71,8 +71,11 @@ namespace Esc.Game.Extensions
         {
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab(PrefabNames.MainGun, position);
-            entity.Replace(new TransformComponent() { Value = gameObject.transform });
-            entity.Replace(new SpawnPointsWithBoolComponent() { Value = gameObject.GetComponent<WeaponView>().BulletSpawnPoints });
+            var view = gameObject.GetComponent<WeaponView>();
+            view.Link(ref entity);
+            entity.Replace(new ViewComponent() { Value = view });
+            entity.ReplaceComponent(new TransformComponent() { Value = gameObject.transform });
+            entity.ReplaceComponent(new SpawnPointsWithBoolComponent() { Value = gameObject.GetComponent<WeaponBoolSpawnPointsView>().BulletSpawnPoints });
             entity.AddParent(player);
             
             entity.Get<MainWeaponComponent>();
@@ -84,11 +87,14 @@ namespace Esc.Game.Extensions
         {
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab(PrefabNames.LaserGun, position);
-            entity.Replace(new TransformComponent() { Value = gameObject.transform });
-            entity.Replace(new ChargesComponent() { Value = parameters.MaxCharges });
-            entity.Replace(new MaxChargesComponent() { Value = parameters.MaxCharges });
+            var view = gameObject.GetComponent<WeaponView>();
+            view.Link(ref entity);
+            entity.Replace(new ViewComponent() { Value = view });
+            entity.ReplaceComponent(new TransformComponent() { Value = gameObject.transform });
+            entity.ReplaceComponent(new ChargesComponent() { Value = parameters.MaxCharges });
+            entity.ReplaceComponent(new SpawnPointsWithBoolComponent() { Value = gameObject.GetComponent<WeaponBoolSpawnPointsView>().BulletSpawnPoints });
+            entity.ReplaceComponent(new MaxChargesComponent() { Value = parameters.MaxCharges });
             world.LaserChargeChange(parameters.MaxCharges);
-            entity.Replace(new SpawnPointsWithBoolComponent() { Value = gameObject.GetComponent<WeaponView>().BulletSpawnPoints });
             entity.AddParent(player);
             
             entity.Get<AdditionalWeaponComponent>();
@@ -121,7 +127,7 @@ namespace Esc.Game.Extensions
                 pointsBase.Add(newPoint);
             }
             
-            entity.Replace(new DirectedSpawnPointsComponent() { Value = pointsBase.ToArray() });
+            entity.ReplaceComponent(new DirectedSpawnPointsComponent() { Value = pointsBase.ToArray() });
             entity.Get<AsteroidTagComponent>();
             return entity;
         }
@@ -137,7 +143,7 @@ namespace Esc.Game.Extensions
                 pointsBase.Add(newPoint);
             }
             
-            entity.Replace(new SpawnPointsComponent() { Value = pointsBase.ToArray() });
+            entity.ReplaceComponent(new SpawnPointsComponent() { Value = pointsBase.ToArray() });
             entity.Get<UFOTagComponent>();
             return entity;
         }
@@ -147,13 +153,13 @@ namespace Esc.Game.Extensions
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab(PrefabNames.BigAsteroid, position);
             gameObject.transform.eulerAngles = spawnAngle;
-            entity.Replace(new TransformComponent() { Value = gameObject.transform });
+            entity.ReplaceComponent(new TransformComponent() { Value = gameObject.transform });
             var random = new System.Random();
             var speed = random.Next(parameters.MinSpeed, parameters.MaxSpeed);
-            entity.Replace(new SpeedComponent() { Value = speed });
-            entity.Replace(new DirectionComponent() { Value = Vector2.up });
-            entity.Replace(new AsteroidSizeComponent() { Value = EAsteroidSizeType.Big });
-            entity.Replace(new CostInPointsComponent() { Value = parameters.CostInPoints });
+            entity.ReplaceComponent(new SpeedComponent() { Value = speed });
+            entity.ReplaceComponent(new DirectionComponent() { Value = Vector2.up });
+            entity.ReplaceComponent(new AsteroidSizeComponent() { Value = EAsteroidSizeType.Big });
+            entity.ReplaceComponent(new CostInPointsComponent() { Value = parameters.CostInPoints });
 
             entity.Get<EnemyTagComponent>();
             entity.Get<TransformMoveComponent>();
@@ -166,12 +172,12 @@ namespace Esc.Game.Extensions
         {
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab(PrefabNames.SmallAsteroid, position, rotation);
-            entity.Replace(new TransformComponent() { Value = gameObject.transform });
+            entity.ReplaceComponent(new TransformComponent() { Value = gameObject.transform });
             var random = new System.Random();
             var speed = random.Next(parameters.MinSpeed, parameters.MaxSpeed);
-            entity.Replace(new SpeedComponent() { Value = speed });
-            entity.Replace(new DirectionComponent() { Value = Vector2.up });
-            entity.Replace(new CostInPointsComponent() { Value = parameters.CostInPoints });
+            entity.ReplaceComponent(new SpeedComponent() { Value = speed });
+            entity.ReplaceComponent(new DirectionComponent() { Value = Vector2.up });
+            entity.ReplaceComponent(new CostInPointsComponent() { Value = parameters.CostInPoints });
 
             entity.Get<EnemyTagComponent>();
             entity.Get<TransformMoveComponent>();
@@ -183,11 +189,11 @@ namespace Esc.Game.Extensions
         {
             var entity = world.NewEntity();
             var gameObject = entity.AddPrefab(PrefabNames.UFO, position);
-            entity.Replace(new TransformComponent() { Value = gameObject.transform });
-            entity.Replace(new RigidbodyComponent() { Value = gameObject.GetComponent<Rigidbody2D>() });
-            entity.Replace(new SpeedComponent() { Value = parameters.Speed });
-            entity.Replace(new DirectionComponent() { Value = Vector2.up });
-            entity.Replace(new CostInPointsComponent() { Value = parameters.CostInPoints });
+            entity.ReplaceComponent(new TransformComponent() { Value = gameObject.transform });
+            entity.ReplaceComponent(new RigidbodyComponent() { Value = gameObject.GetComponent<Rigidbody2D>() });
+            entity.ReplaceComponent(new SpeedComponent() { Value = parameters.Speed });
+            entity.ReplaceComponent(new DirectionComponent() { Value = Vector2.up });
+            entity.ReplaceComponent(new CostInPointsComponent() { Value = parameters.CostInPoints });
 
             entity.Get<EnemyTagComponent>();
             entity.Get<FollowPlayerComponent>();

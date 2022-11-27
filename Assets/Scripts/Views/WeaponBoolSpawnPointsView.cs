@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Esc.Views
 {
-    public class WeaponView : MonoBehaviour
+    public class WeaponBoolSpawnPointsView : ObjectView
     {
         public BoolSpawnPointBase[] BulletSpawnPoints;
     }

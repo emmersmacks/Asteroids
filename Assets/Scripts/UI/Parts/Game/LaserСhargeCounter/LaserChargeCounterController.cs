@@ -3,13 +3,10 @@ using Leopotam.Ecs;
 
 namespace UI.Parts.Game.LaserСhargeCounter
 {
-    public class LaserChargeCounterController
+    public class LaserChargeCounterController : Controller<LaserChargeCounterView>
     {
-        private readonly LaserChargeCounterView _view;
-
-        public LaserChargeCounterController(LaserChargeCounterView view, CustomEcsWorld world)
+        public LaserChargeCounterController(LaserChargeCounterView view, CustomEcsWorld world) : base(view)
         {
-            _view = view;
             world.LaserChargeChange += UpdateCounter;
         }
 

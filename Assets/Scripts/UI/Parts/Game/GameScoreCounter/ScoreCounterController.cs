@@ -2,13 +2,10 @@ using Infrastructure;
 
 namespace UI.Parts.Game.GameScoreCounter
 {
-    public class ScoreCounterController
+    public class ScoreCounterController : Controller<ScoreCounterView>
     {
-        private readonly ScoreCounterView _view;
-
-        public ScoreCounterController(ScoreCounterView view, CustomEcsWorld world)
+        public ScoreCounterController(ScoreCounterView view, CustomEcsWorld world) : base(view)
         {
-            _view = view;
             world.ScoreChange += UpdateCounter;
         }
 

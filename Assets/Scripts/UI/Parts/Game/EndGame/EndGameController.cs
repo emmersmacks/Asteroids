@@ -5,14 +5,12 @@ using UnityEngine;
 
 namespace UI.Parts.Game.EndGame
 {
-    public class EndGameController
+    public class EndGameController : Controller<EndGameView>
     {
-        private readonly EndGameView _view;
         private readonly GameStateMachine _stateMachine;
 
-        public EndGameController(EndGameView view, GameStateMachine stateMachine)
+        public EndGameController(EndGameView view, GameStateMachine stateMachine) : base(view)
         {
-            _view = view;
             _stateMachine = stateMachine;
 
             _view.ReloadGame.onClick.AddListener(ReloadGame);

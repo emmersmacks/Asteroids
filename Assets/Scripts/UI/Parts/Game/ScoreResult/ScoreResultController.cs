@@ -2,13 +2,10 @@ using Data.Bases;
 
 namespace UI.Parts.Game.ScoreResult
 {
-    public class ScoreResultController
+    public class ScoreResultController : Controller<ScoreResultView>
     {
-        private readonly ScoreResultView _view;
-
-        public ScoreResultController(ScoreResultView view)
+        public ScoreResultController(ScoreResultView view) : base(view)
         {
-            _view = view;
         }
 
         public void SetScore(int score)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI.Screens
 {
-    public class GameScreen : MonoBehaviour
+    public class GameScreen : MonoBehaviour, IScreen
     {
         public ScoreCounterView scoreCounterView;
         public LaserChargeCounterView LaserChargeCounterView;

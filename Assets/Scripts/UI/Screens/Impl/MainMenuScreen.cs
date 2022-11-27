@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UI.Screens
 {
-    public class MainMenuScreen : MonoBehaviour
+    public class MainMenuScreen : MonoBehaviour, IScreen
     {
         public MenuView MenuView;
     }

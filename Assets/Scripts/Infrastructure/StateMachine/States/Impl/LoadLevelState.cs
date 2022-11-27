@@ -4,6 +4,7 @@ using Infrastructure.ObjectsPool;
 using UI.Parts.Game.GameScoreCounter;
 using UI.Parts.Game.LaserСhargeCounter;
 using UI.Screens;
+using UI.Screens.Impl;
 using UnityEngine;
 
 namespace Infrastructure.StateMachine.States.Impl

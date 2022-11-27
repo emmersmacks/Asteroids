@@ -1,7 +1,7 @@
 using UI.Parts.Game.Menu;
 using UnityEngine;
 
-namespace UI.Screens
+namespace UI.Screens.Impl
 {
     public class MainMenuScreen : MonoBehaviour, IScreen
     {

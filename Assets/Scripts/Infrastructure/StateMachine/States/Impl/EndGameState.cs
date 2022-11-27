@@ -4,6 +4,7 @@ using Infrastructure.ObjectsPool;
 using UI.Parts.Game.EndGame;
 using UI.Parts.Game.ScoreResult;
 using UI.Screens;
+using UI.Screens.Impl;
 using UnityEngine;
 
 namespace Infrastructure.StateMachine.States.Impl

@@ -2,6 +2,7 @@
 using Infrastructure.ObjectsPool;
 using UI.Parts.Game.Menu;
 using UI.Screens;
+using UI.Screens.Impl;
 using UnityEngine;
 
 namespace Infrastructure.StateMachine.States.Impl

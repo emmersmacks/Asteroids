@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerParameters
   m_EditorClassIdentifier: 
   _speed: 5
-  _rotateSpeed: 130
-  _deadDistance: 0.3
+  _rotateSpeed: 180
+  _deadDistance: 0.5

@@ -1,4 +1,5 @@
-﻿using Infrastructure.ObjectsPool;
+﻿using Data;
+using Infrastructure.ObjectsPool;
 using UI.Menu;
 using UI.Screens;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace Infrastructure.StateMachine.States.Impl
         
         public void Enter()
         {
-            _canvas = PoolManager.GetObject("MenuHud");
+            _canvas = PoolManager.GetObject(PrefabNames.MenuHud);
             
             var screen = _canvas.GetComponent<MainMenuScreen>();
 

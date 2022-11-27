@@ -1,3 +1,4 @@
+using Data;
 using Game.Extensions;
 using Game.Views;
 using Infrastructure;
@@ -11,10 +12,10 @@ namespace Game.Systems.Initialize
         
         public void Init()
         {
-            var entity = _world.NewEntity();
-            var gameObject = entity.AddPrefab("Level");
+            var levelEntity = _world.NewEntity();
+            var gameObject = levelEntity.AddPrefab(PrefabNames.Level);
             var levelView = gameObject.GetComponent<LevelView>();
-            _world.CreateLevel();
+            _world.CreateLevel(levelEntity);
 
             _world.InitializeAsteroidsSpawner(levelView.AsteroidSpawnPoints);
             _world.InitializeUFOSpawner(levelView.UFOSpawnPoints);

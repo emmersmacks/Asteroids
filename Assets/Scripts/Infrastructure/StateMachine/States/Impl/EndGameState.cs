@@ -1,4 +1,5 @@
-﻿using Data.Bases;
+﻿using Data;
+using Data.Bases;
 using Infrastructure.ObjectsPool;
 using UI.Game.ScoreCounter;
 using UI.Parts.Game.EndGame;
@@ -22,7 +23,7 @@ namespace Infrastructure.StateMachine.States.Impl
         {
             var endGameDataBase = payload as EndGameDataBase;
 
-            _screenObject = PoolManager.GetObject("EndGameHud");
+            _screenObject = PoolManager.GetObject(PrefabNames.EndGameHud);
             var screen = _screenObject.GetComponent<EndGameScreen>();
                 
             var endGameController = new EndGameController(screen.EndGameView, _stateMachine);

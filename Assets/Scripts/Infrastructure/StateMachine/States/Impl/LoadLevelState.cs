@@ -1,4 +1,5 @@
 ﻿
+using Data;
 using Infrastructure.ObjectsPool;
 using UI.Game.ScoreCounter;
 using UI.Menu;
@@ -21,11 +22,11 @@ namespace Infrastructure.StateMachine.States.Impl
 
         public void Enter()
         {
-            var ecsLoaderObject = PoolManager.GetObject("EcsInstaller");
+            var ecsLoaderObject = PoolManager.GetObject(PrefabNames.EcsInstaller);
             var ecsLoader = ecsLoaderObject.GetComponent<EcsLoader>();
             ecsLoader.CreateWorld(_gameStateMachine);
             
-            _canvas = PoolManager.GetObject("GameHud");
+            _canvas = PoolManager.GetObject(PrefabNames.GameHud);
             var screen = _canvas.GetComponent<GameScreen>();
 
             var scoreView = screen.scoreCounterView;

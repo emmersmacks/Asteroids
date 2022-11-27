@@ -22,7 +22,7 @@ namespace Game.Extensions
         public static EcsEntity CreatePlayer(this CustomEcsWorld world, Vector3 position, PlayerParameters parameters)
         {
             var entity = world.NewEntity();
-            var gameObject = entity.AddPrefab("Player", position);
+            var gameObject = entity.AddPrefab(PrefabNames.Player, position);
             entity.Replace(new RigidbodyComponent() { Value = gameObject.GetComponent<Rigidbody2D>() });
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             entity.Replace(new SpeedComponent() { Value = parameters.Speed });
@@ -39,7 +39,7 @@ namespace Game.Extensions
         public static EcsEntity CreateBullet(this CustomEcsWorld world, Vector3 position, Quaternion rotation, PlayerBulletsParameters parameters)
         {
             var entity = world.NewEntity();
-            var gameObject = entity.AddPrefab("DefaultBullet", position, rotation);
+            var gameObject = entity.AddPrefab(PrefabNames.DefaultBullet, position, rotation);
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             entity.Replace(new SpeedComponent() { Value = parameters.Speed });
             entity.Replace(new DirectionComponent() { Value = Vector2.up });
@@ -54,7 +54,7 @@ namespace Game.Extensions
         public static EcsEntity CreateLaserBullet(this CustomEcsWorld world, Vector3 startPosition, Vector3 direction, LayerMask damageLayer)
         {
             var entity = world.NewEntity();
-            var gameObject = entity.AddPrefab("LaserBullet", startPosition);
+            var gameObject = entity.AddPrefab(PrefabNames.LaserBullet, startPosition);
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             entity.Replace(new DamageLayerComponent() { Value = damageLayer });
             var lineRenderer = gameObject.GetComponent<LineRenderer>();
@@ -68,7 +68,7 @@ namespace Game.Extensions
         public static EcsEntity CreateMainWeapon(this CustomEcsWorld world, Vector3 position, EcsEntity player)
         {
             var entity = world.NewEntity();
-            var gameObject = entity.AddPrefab("MainGun", position);
+            var gameObject = entity.AddPrefab(PrefabNames.MainGun, position);
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             entity.Replace(new SpawnPointsWithBoolComponent() { Value = gameObject.GetComponent<WeaponView>().BulletSpawnPoints });
             entity.AddParent(player);
@@ -81,7 +81,7 @@ namespace Game.Extensions
         public static EcsEntity CreateLaserWeapon(this CustomEcsWorld world, Vector3 position, EcsEntity player, ChargesParameters parameters)
         {
             var entity = world.NewEntity();
-            var gameObject = entity.AddPrefab("LaserGun", position);
+            var gameObject = entity.AddPrefab(PrefabNames.LaserGun, position);
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             entity.Replace(new ChargesComponent() { Value = parameters.MaxCharges });
             entity.Replace(new MaxChargesComponent() { Value = parameters.MaxCharges });
@@ -95,10 +95,8 @@ namespace Game.Extensions
             return entity;
         }
 
-        public static EcsEntity CreateLevel(this CustomEcsWorld world)
+        public static EcsEntity CreateLevel(this CustomEcsWorld world, EcsEntity entity)
         {
-            var entity = world.NewEntity();
-            entity.AddPrefab("Level");
             entity.Get<ScoreComponent>();
             entity.Get<LevelTagComponent>();
             return entity;
@@ -143,7 +141,7 @@ namespace Game.Extensions
         public static EcsEntity CreateBigAsteroid(this CustomEcsWorld world, Vector3 position, Vector3 spawnAngle, BigAsteroidParameters parameters)
         {
             var entity = world.NewEntity();
-            var gameObject = entity.AddPrefab("BigAsteroid", position);
+            var gameObject = entity.AddPrefab(PrefabNames.BigAsteroid, position);
             gameObject.transform.eulerAngles = spawnAngle;
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             var random = new System.Random();
@@ -163,7 +161,7 @@ namespace Game.Extensions
         public static EcsEntity CreateSmallAsteroid(this CustomEcsWorld world, Vector3 position, Quaternion rotation, SmallAsteroidsParameters parameters)
         {
             var entity = world.NewEntity();
-            var gameObject = entity.AddPrefab("SmallAsteroid", position, rotation);
+            var gameObject = entity.AddPrefab(PrefabNames.SmallAsteroid, position, rotation);
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             var random = new System.Random();
             var speed = random.Next(parameters.MinSpeed, parameters.MaxSpeed);
@@ -180,7 +178,7 @@ namespace Game.Extensions
         public static EcsEntity CreateUFO(this CustomEcsWorld world, Vector3 position, UFOParameters parameters)
         {
             var entity = world.NewEntity();
-            var gameObject = entity.AddPrefab("UFO", position);
+            var gameObject = entity.AddPrefab(PrefabNames.UFO, position);
             entity.Replace(new TransformComponent() { Value = gameObject.transform });
             entity.Replace(new RigidbodyComponent() { Value = gameObject.GetComponent<Rigidbody2D>() });
             entity.Replace(new SpeedComponent() { Value = parameters.Speed });

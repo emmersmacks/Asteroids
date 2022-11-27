@@ -8,7 +8,7 @@ namespace Game.Systems
     public class DestroyEntitySystem : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
-        private readonly EcsFilter<DestroyComponent, TransformComponent> _group = null;
+        private readonly EcsFilter<DestroyComponent, TransformComponent>.Exclude<DestroyComponent> _group = null;
         
         public void Run()
         {

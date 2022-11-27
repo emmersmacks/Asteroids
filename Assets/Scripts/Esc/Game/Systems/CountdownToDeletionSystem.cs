@@ -8,7 +8,7 @@ namespace Game.Systems
     public class CountdownToDeletionSystem : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
-        private readonly EcsFilter<DestroyDelayComponent> _group;
+        private readonly EcsFilter<DestroyDelayComponent>.Exclude<DestroyComponent> _group;
         
         public void Run()
         {

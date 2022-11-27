@@ -14,7 +14,7 @@ namespace Game.Systems
         private const int RightMouseButtonIndex = 1;
         
         private readonly CustomEcsWorld _world = null;
-        private readonly EcsFilter<DirectionComponent, PlayerTagComponent, UnitComponent> _group = null;
+        private readonly EcsFilter<DirectionComponent, PlayerTagComponent, UnitComponent>.Exclude<DestroyComponent> _group = null;
 
         public void Run()
         {

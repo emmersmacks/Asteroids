@@ -15,8 +15,8 @@ namespace Game.Systems
         private readonly PlayerParameters _playerParameters = null;
 
         
-        private readonly EcsFilter<EnemyTagComponent, UnitComponent> _enemyGroup = null;
-        private readonly EcsFilter<PlayerTagComponent, UnitComponent> _playerGroup = null;
+        private readonly EcsFilter<EnemyTagComponent, UnitComponent>.Exclude<DestroyComponent> _enemyGroup = null;
+        private readonly EcsFilter<PlayerTagComponent, UnitComponent>.Exclude<DestroyComponent> _playerGroup = null;
         
         public void Run()
         {

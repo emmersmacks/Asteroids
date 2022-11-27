@@ -8,7 +8,8 @@ namespace Game.Systems
     public class TransformMoveSystem : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
-        private readonly EcsFilter<DirectionComponent, SpeedComponent, TransformComponent, TransformMoveComponent> _group;
+        private readonly EcsFilter<DirectionComponent, SpeedComponent, TransformComponent, TransformMoveComponent>
+            .Exclude<DestroyComponent> _group;
         
         public void Run()
         {

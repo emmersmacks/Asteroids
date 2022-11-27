@@ -18,7 +18,7 @@ namespace Game.Systems.Asteroids
         private readonly BigAsteroidParameters _bigAsteroidParameters = null;
 
 
-        private readonly EcsFilter<DirectedSpawnPointsComponent, AsteroidTagComponent>.Exclude<DelayComponent> _group;
+        private readonly EcsFilter<DirectedSpawnPointsComponent, AsteroidTagComponent>.Exclude<DelayComponent, DestroyComponent> _group;
         
         public void Run()
         {

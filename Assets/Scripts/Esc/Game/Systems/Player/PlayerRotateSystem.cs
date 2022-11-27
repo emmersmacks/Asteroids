@@ -8,7 +8,7 @@ namespace Game.Systems.Player
     public class PlayerRotateSystem : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
-        private readonly EcsFilter<DirectionComponent, TransformComponent, RotateSpeedComponent> _group;
+        private readonly EcsFilter<DirectionComponent, TransformComponent, RotateSpeedComponent>.Exclude<DestroyComponent> _group;
         
         public void Run()
         {

@@ -10,8 +10,8 @@ namespace Game.Systems
     {
         private readonly CustomEcsWorld _world = null;
         
-        private readonly EcsFilter<FollowPlayerComponent, TransformComponent> _followersGroup = null;
-        private readonly EcsFilter<PlayerTagComponent, UnitComponent, TransformComponent> _playersGroup = null;
+        private readonly EcsFilter<FollowPlayerComponent, TransformComponent>.Exclude<DestroyComponent> _followersGroup = null;
+        private readonly EcsFilter<PlayerTagComponent, UnitComponent, TransformComponent>.Exclude<DestroyComponent> _playersGroup = null;
         
         public void Run()
         {

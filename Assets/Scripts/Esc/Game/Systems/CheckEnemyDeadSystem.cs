@@ -11,8 +11,9 @@ namespace Game.Systems
     {
         private readonly CustomEcsWorld _world = null;
         
+        
         private readonly EcsFilter<DestroyComponent, EnemyTagComponent, CostInPointsComponent, KilledTagComponent> _enemyGroup = null;
-        private readonly EcsFilter<LevelTagComponent> _levelGroup = null;
+        private readonly EcsFilter<LevelTagComponent>.Exclude<DestroyComponent> _levelGroup = null;
         
         public void Run()
         {

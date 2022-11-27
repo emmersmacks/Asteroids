@@ -13,7 +13,7 @@ namespace Game.Systems
         
         private readonly LevelParameters _levelParameters = null;
 
-        private readonly EcsFilter<RigidbodyComponent, TransformComponent, PlayerTagComponent> _group;
+        private readonly EcsFilter<RigidbodyComponent, TransformComponent, PlayerTagComponent>.Exclude<DestroyComponent> _group;
 
         public void Run()
         {

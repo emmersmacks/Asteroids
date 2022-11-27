@@ -17,7 +17,8 @@ namespace Game.Systems.Asteroids
         private readonly CustomEcsWorld _world = null;
 
         private readonly SmallAsteroidsParameters _smallAsteroidsParameters = null;
-        private readonly EcsFilter<AsteroidTagComponent, DestroyComponent, AsteroidSizeComponent> _group;
+        private readonly EcsFilter<AsteroidTagComponent, DestroyComponent, AsteroidSizeComponent>
+            .Exclude<DestroyComponent> _group;
         
         public void Run()
         {

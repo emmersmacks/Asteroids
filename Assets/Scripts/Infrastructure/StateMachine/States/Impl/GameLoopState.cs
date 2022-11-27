@@ -1,4 +1,5 @@
-﻿using Infrastructure.ObjectsPool;
+﻿using Game.Components.Tags;
+using Infrastructure.ObjectsPool;
 using UnityEngine.Pool;
 
 namespace Infrastructure.StateMachine.States.Impl

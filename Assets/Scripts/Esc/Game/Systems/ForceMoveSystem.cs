@@ -8,7 +8,8 @@ namespace Game.Systems
     public class ForceMoveSystem : IEcsRunSystem
     {
         private readonly CustomEcsWorld _world = null;
-        private readonly EcsFilter<DirectionComponent, RigidbodyComponent, SpeedComponent, TransformComponent, ForceMoveComponent> _group;
+        private readonly EcsFilter<DirectionComponent, RigidbodyComponent, SpeedComponent, TransformComponent, ForceMoveComponent>
+            .Exclude<DestroyComponent> _group;
 
         public void Run()
         {

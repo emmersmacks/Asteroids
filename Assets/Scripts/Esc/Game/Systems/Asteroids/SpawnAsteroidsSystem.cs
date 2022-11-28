@@ -15,8 +15,7 @@ namespace Esc.Game.Systems.Asteroids
         
         private readonly AsteroidsSpawnParameters _spawnParameters = null;
         private readonly BigAsteroidParameters _bigAsteroidParameters = null;
-
-
+        
         private readonly EcsFilter<DirectedSpawnPointsComponent, AsteroidTagComponent>.Exclude<DelayComponent, DestroyComponent> _spawnerGroup;
         
         public void Run()

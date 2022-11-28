@@ -15,5 +15,6 @@ namespace Data
         public static string GameHud = "GameHud";
         public static string EndGameHud = "EndGameHud";
         public static string MenuHud = "MenuHud";
+        public static string BoomVfx = "BoomVfx";
     }
 }

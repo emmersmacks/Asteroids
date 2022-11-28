@@ -1,5 +1,6 @@
 using Esc.Game.Components;
 using Esc.Game.Components.Tags;
+using Esc.Game.Extensions;
 using Infrastructure;
 using Infrastructure.ObjectsPool;
 using Leopotam.Ecs;
@@ -29,7 +30,7 @@ namespace Esc.Game.Systems
                 _world.ScoreChange?.Invoke(newScore);
 
                 var enemyTransform = enemy.Get<TransformComponent>().Value;
-                PoolManager.GetObject("BoomVfx", enemyTransform.position);
+                _world.CreateBoomVfx(enemyTransform.position);
             }
         }
     }

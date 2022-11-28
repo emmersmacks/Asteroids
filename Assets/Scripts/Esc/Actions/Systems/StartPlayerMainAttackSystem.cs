@@ -32,22 +32,32 @@ namespace Esc.Actions.Systems
 
                     if (spawnPoints[spawnPoints.Length - 1].IsSpawned)
                     {
-                        for (int pointIndex = 0; pointIndex < spawnPoints.Length; pointIndex++)
-                        {
-                            spawnPoints[pointIndex] = new BoolSpawnPointBase() { Point = spawnPoints[pointIndex].Point, IsSpawned = false};
-                        }
+                        RechargeSpawnPoints(spawnPoints);
                     }
 
-                    for (int i = 0; i < spawnPoints.Length; i++)
-                    {
-                        if (!spawnPoints[i].IsSpawned)
-                        {
-                            var weaponRotation = weaponEntity.Get<TransformComponent>().Value.rotation;
-                            _world.CreateBullet(spawnPoints[i].Point.position, weaponRotation, _playerBulletsParameters);
-                            spawnPoints[i] = new BoolSpawnPointBase() { Point = spawnPoints[i].Point, IsSpawned = true};
-                            return;
-                        }
-                    }
+                    Shoot(spawnPoints, weaponEntity);
+                }
+            }
+        }
+
+        private static void RechargeSpawnPoints(BoolSpawnPointBase[] spawnPoints)
+        {
+            for (int pointIndex = 0; pointIndex < spawnPoints.Length; pointIndex++)
+            {
+                spawnPoints[pointIndex] = new BoolSpawnPointBase() { Point = spawnPoints[pointIndex].Point, IsSpawned = false };
+            }
+        }
+
+        private void Shoot(BoolSpawnPointBase[] spawnPoints, EcsEntity weaponEntity)
+        {
+            for (int i = 0; i < spawnPoints.Length; i++)
+            {
+                if (!spawnPoints[i].IsSpawned)
+                {
+                    var weaponRotation = weaponEntity.Get<TransformComponent>().Value.rotation;
+                    _world.CreateBullet(spawnPoints[i].Point.position, weaponRotation, _playerBulletsParameters);
+                    spawnPoints[i] = new BoolSpawnPointBase() { Point = spawnPoints[i].Point, IsSpawned = true };
+                    return;
                 }
             }
         }

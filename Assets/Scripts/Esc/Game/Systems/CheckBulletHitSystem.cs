@@ -35,7 +35,7 @@ namespace Esc.Game.Systems
 
                 var damageLayer = bulletEntity.Get<DamageLayerComponent>().Value;
 
-                if (damageLayer == (damageLayer | (1 << hit.collider.gameObject.layer)))
+                if (IsLayerDamage(damageLayer, hit))
                 {
                     var uid = hit.collider.gameObject.GetInstanceID();
                     var entity = _world.GetEntityWithUid(uid);
@@ -44,6 +44,11 @@ namespace Esc.Game.Systems
                     bulletEntity.Get<DestroyComponent>();
                 }
             }
+        }
+
+        private static bool IsLayerDamage(LayerMask damageLayer, RaycastHit2D hit)
+        {
+            return damageLayer == (damageLayer | (1 << hit.collider.gameObject.layer));
         }
     }
 }

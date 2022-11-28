@@ -1,3 +1,4 @@
+using Data.Bases;
 using Data.Parameters.PlayerBullets;
 using Esc.Actions.Components;
 using Esc.Game.Components;
@@ -39,27 +40,49 @@ namespace Esc.Actions.Systems
 
                     foreach (var point in spawnPoints)
                     {
-                        var bullet = _world.CreateLaserBullet(point.Point.position,
-                            point.Point.transform.TransformPoint(Vector3.up * _laserWeaponParameters.HitDistance), _laserWeaponParameters.DamageLayerMask);
-                        bullet.Replace(new DestroyDelayComponent() { Value = _laserWeaponParameters.DestroyDelay });
-                        
-                        var damageLayer = bullet.Get<DamageLayerComponent>().Value;
-
-                        var hits = Physics2D.RaycastAll(point.Point.position, point.Point.transform.TransformVector(Vector3.up), _laserWeaponParameters.HitDistance, damageLayer);
-                        foreach (var hit in hits)
-                        {
-                            var uid = hit.collider.gameObject.GetInstanceID();
-                            var hitEntity = _world.GetEntityWithUid(uid);
-                            hitEntity.Get<DestroyComponent>();
-                            hitEntity.Get<KilledTagComponent>();
-                        }
+                        Shoot(point);
                     }
 
-                    var newChargesNumber = chargesNumber - _laserWeaponParameters.ChargeСost;
-                    _world.LaserChargeChange(newChargesNumber);
-                    var chargesComponent = new ChargesComponent() { Value = newChargesNumber };
-                    weaponEntity.Replace(chargesComponent);
+                    ReduceCharges(chargesNumber, weaponEntity);
                 }
+            }
+        }
+
+        private void ReduceCharges(int chargesNumber, EcsEntity weaponEntity)
+        {
+            var newChargesNumber = chargesNumber - _laserWeaponParameters.ChargeСost;
+            _world.LaserChargeChange(newChargesNumber);
+            var chargesComponent = new ChargesComponent() { Value = newChargesNumber };
+            weaponEntity.Replace(chargesComponent);
+        }
+
+        private void Shoot(BoolSpawnPointBase point)
+        {
+            var bullet = CreateBullet(point);
+            CheckDestroy(point, bullet);
+        }
+
+        private EcsEntity CreateBullet(BoolSpawnPointBase point)
+        {
+            var bullet = _world.CreateLaserBullet(point.Point.position,
+                point.Point.transform.TransformPoint(Vector3.up * _laserWeaponParameters.HitDistance),
+                _laserWeaponParameters.DamageLayerMask);
+            bullet.Replace(new DestroyDelayComponent() { Value = _laserWeaponParameters.DestroyDelay });
+            return bullet;
+        }
+
+        private void CheckDestroy(BoolSpawnPointBase point, EcsEntity bullet)
+        {
+            var damageLayer = bullet.Get<DamageLayerComponent>().Value;
+
+            var hits = Physics2D.RaycastAll(point.Point.position, point.Point.transform.TransformVector(Vector3.up),
+                _laserWeaponParameters.HitDistance, damageLayer);
+            foreach (var hit in hits)
+            {
+                var uid = hit.collider.gameObject.GetInstanceID();
+                var hitEntity = _world.GetEntityWithUid(uid);
+                hitEntity.Get<DestroyComponent>();
+                hitEntity.Get<KilledTagComponent>();
             }
         }
     }

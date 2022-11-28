@@ -21,7 +21,6 @@ namespace Esc.Views
         
         protected void OnShootAdded(ValueType component)
         {
-            Debug.Log("DDD");
             _shootSound.Play();
         }
 
